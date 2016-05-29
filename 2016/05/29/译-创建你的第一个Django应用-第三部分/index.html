@@ -6,36 +6,33 @@
   <title>[译]创建你的第一个Django应用 - 第三部分 | 42 Answers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="这章教程将继续第二章结束的地方， 我们将继续编写我们的网络民调应用，并切将专注于创建一个界面 - 视图(view)
-##思想
-视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
+思想视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
 举例来说， 在一个博客应用之中， 你可能会有如下的视图：
 
 博客主页， 显示最新的几篇博文
 博文的“详细” 页面， 完整展示某一篇博文的详细信息
-以年为基础的分类页面 ，以">
+以年为基础的分类页面 ，以某一年">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]创建你的第一个Django应用 - 第三部分">
 <meta property="og:url" content="http://blog.york42.com/2016/05/29/译-创建你的第一个Django应用-第三部分/index.html">
 <meta property="og:site_name" content="42 Answers">
 <meta property="og:description" content="这章教程将继续第二章结束的地方， 我们将继续编写我们的网络民调应用，并切将专注于创建一个界面 - 视图(view)
-##思想
-视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
+思想视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
 举例来说， 在一个博客应用之中， 你可能会有如下的视图：
 
 博客主页， 显示最新的几篇博文
 博文的“详细” 页面， 完整展示某一篇博文的详细信息
-以年为基础的分类页面 ，以">
-<meta property="og:updated_time" content="2016-05-29T16:08:11.090Z">
+以年为基础的分类页面 ，以某一年">
+<meta property="og:updated_time" content="2016-05-29T16:18:53.748Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]创建你的第一个Django应用 - 第三部分">
 <meta name="twitter:description" content="这章教程将继续第二章结束的地方， 我们将继续编写我们的网络民调应用，并切将专注于创建一个界面 - 视图(view)
-##思想
-视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
+思想视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。
 举例来说， 在一个博客应用之中， 你可能会有如下的视图：
 
 博客主页， 显示最新的几篇博文
 博文的“详细” 页面， 完整展示某一篇博文的详细信息
-以年为基础的分类页面 ，以">
+以年为基础的分类页面 ，以某一年">
   
     <link rel="alternative" href="/atom.xml" title="42 Answers" type="application/atom+xml">
   
@@ -74,8 +71,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这章教程将继续第二章结束的地方， 我们将继续编写我们的网络民调应用，并切将专注于创建一个界面 - <strong>视图(view)</strong></p>
-<p>##思想</p>
-<p>视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。</p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。</p>
 <p>举例来说， 在一个博客应用之中， 你可能会有如下的视图：</p>
 <ul>
 <li>博客主页， 显示最新的几篇博文</li>
@@ -96,8 +92,7 @@
 <p>你可能经常会遇见像 “ME2/Sites/dirmod.asp?sid=&amp;type=gen&amp;mod=Core+Pages&amp;gid=A6CD4967199A42D9B65B1B” 这样的URL， 你会十分欣慰Django有着一个比这要优雅的多的URL系统。</p>
 <p>一个URL模式字符串其实就是URL的一般形式， 例如： <code>/newsarchive/&lt;year&gt;/&lt;month&gt;</code></p>
 <p>要从一个URL中获得一个视图， Django使用被称为<code>URLconfs</code>的方法。 URLconfs适配URL模式字符串（用正则表达式的形式描述），并选择相对应的视图。</p>
-<p>##编写你的第一个视图</p>
-<p>让我们来着手编写第一个视图， 打开<code>polls/views.py</code>文件， 然后输入如下的Python代码：</p>
+<h2 id="编写你的第一个视图"><a href="#编写你的第一个视图" class="headerlink" title="编写你的第一个视图"></a>编写你的第一个视图</h2><p>让我们来着手编写第一个视图， 打开<code>polls/views.py</code>文件， 然后输入如下的Python代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> HttpResponse(<span class="string">"Hello, world. You're at the polls index."</span>)</span><br></pre></td></tr></table></figure>
 <p>这是Django能够提供的最基础的视图。 要访问这个视图， 我们需要将其映射到URL上 -  所以我们需要一个URL配置。</p>
 <p>若想在应用目录下设置一个URL配置， 创建一个叫做<code>urls.py</code>的文件。 你的应用目录现在应该长这个样子：</p>
@@ -109,23 +104,18 @@
 <p>你现在就已经把一个<code>index</code>视图添加进了URL设置之中。 在你的浏览器中访问 <a href="http://localhost:8000/polls/" target="_blank" rel="external">http://localhost:8000/polls/</a> ， 你就将见到你在index视图中定义的那行文字： <em>Hello, world. You’re at the polls index</em></p>
 <p>url函数传递四个参数， 两个是必须参数： <code>regex</code>正则表达式 和 <code>view</code>视图。  以及两个可选参数： <code>kwargs</code>关键字参数,<code>name</code>名称。 </p>
 <p>现在让我们一个一个介绍一下他们各自分别代表着什么：</p>
-<p>###url()参数： regex 正则表达式</p>
-<p>术语’regex’ 是 正则表达式’regular expression’ 的缩写， 代表着一种对字符串中特定模式进行匹配的语法。 Django从第一个正则表达式开始， 并按照列表依次对要求访问的URL进行匹配， 直到找到所需的URL。 </p>
+<h3 id="url-参数：-regex-正则表达式"><a href="#url-参数：-regex-正则表达式" class="headerlink" title="url()参数： regex 正则表达式"></a>url()参数： regex 正则表达式</h3><p>术语’regex’ 是 正则表达式’regular expression’ 的缩写， 代表着一种对字符串中特定模式进行匹配的语法。 Django从第一个正则表达式开始， 并按照列表依次对要求访问的URL进行匹配， 直到找到所需的URL。 </p>
 <p>请注意， 这些URL的正则匹配并不会对POST和GET的传递参量进行匹配。 如在一个<code>http://www.example.com/myapp</code>的URL请求中， URL设置会匹配 <code>myapp/</code>。 而在一个<code>http://www.example.com/myapp/?page=3</code>的请求中， URL设置仍然只会匹配<code>myapp/</code></p>
 <p>如果在正则表达式方面需要任何帮助， 请访问Wikipedia的正则表达式相关页面，与Python的re模块的相关官方文档。 以及由O’Relly公司出版的由Jeffrey Friedl所著的《精通正则表达式》也是相当不错的选择。 但实际上， 你并不需要成为一名正则表达式的专家， 你仅仅需要知道怎么去对一些简单的模式进行匹配就好了。 事实上， 十分复杂的正则表达式有着很惨的使用表现，所以你最好还是不要太过依赖于正则表达式。</p>
 <p>最终， 一个性能方面的提醒： 这些正则表达式在URL设置模块被加载的时候就被编译好了， 他们运行的速度超级快（如果这个匹配并非像前文所讲的那么的复杂的话）。 </p>
 <hr>
-<p>###url()参数： view 视图</p>
-<p>当Django找到了一个正则表达式的匹配， 它会调用相对应的视图函数， 并传递一个<code>HttpRequest</code>作为第一参数，被正则表达式匹配的其它内容作为剩余参数。 如果正则表达式仅作简单的匹配， 匹配值将作为普通参数(positional arguments)进行传递， 如果使用了名称匹配， 那么匹配值将作为键值对来传递。 我们将会在稍后提供一个小小的例子。</p>
+<h3 id="url-参数：-view-视图"><a href="#url-参数：-view-视图" class="headerlink" title="url()参数： view 视图"></a>url()参数： view 视图</h3><p>当Django找到了一个正则表达式的匹配， 它会调用相对应的视图函数， 并传递一个<code>HttpRequest</code>作为第一参数，被正则表达式匹配的其它内容作为剩余参数。 如果正则表达式仅作简单的匹配， 匹配值将作为普通参数(positional arguments)进行传递， 如果使用了名称匹配， 那么匹配值将作为键值对来传递。 我们将会在稍后提供一个小小的例子。</p>
 <hr>
-<p>###url()参数： kwargs 关键字</p>
-<p>任意的关键字都可以被以字典的形式作为参数传递给目标视图。 在此教程中我们将不会使用这个功能。</p>
+<h3 id="url-参数：-kwargs-关键字"><a href="#url-参数：-kwargs-关键字" class="headerlink" title="url()参数： kwargs 关键字"></a>url()参数： kwargs 关键字</h3><p>任意的关键字都可以被以字典的形式作为参数传递给目标视图。 在此教程中我们将不会使用这个功能。</p>
 <hr>
-<p>###url()参数： name 名称</p>
-<p>为你的URL起一个名字， 使得你可以在Django项目的其他地方， 尤其是模板中明确地调用它。 这个强大的功能使得你可以在只用在一个文件中就可以对url模式匹配做一个全局的修改。</p>
+<h3 id="url-参数：-name-名称"><a href="#url-参数：-name-名称" class="headerlink" title="url()参数： name 名称"></a>url()参数： name 名称</h3><p>为你的URL起一个名字， 使得你可以在Django项目的其他地方， 尤其是模板中明确地调用它。 这个强大的功能使得你可以在只用在一个文件中就可以对url模式匹配做一个全局的修改。</p>
 <hr>
-<p>##编写更多的视图</p>
-<p>现在让我们对polls/views.py 文件添加更多的视图。 这些视图有着些许的差别， 因为他们都接受了一个参数：</p>
+<h2 id="编写更多的视图"><a href="#编写更多的视图" class="headerlink" title="编写更多的视图"></a>编写更多的视图</h2><p>现在让我们对polls/views.py 文件添加更多的视图。 这些视图有着些许的差别， 因为他们都接受了一个参数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> HttpResponse(<span class="string">"You're looking at question %s."</span> %question_id)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">results</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	response = <span class="string">"You're looking at the results of question %s."</span></span><br><span class="line">	<span class="keyword">return</span> HttpResponse(response %question_id)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> %question_id)</span><br></pre></td></tr></table></figure>
 <p>对这些新增的视图添加url链接</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/urls.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> patterns, url</span><br><span class="line"><span class="keyword">from</span> polls <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = patterns(<span class="string">''</span>,</span><br><span class="line">	<span class="comment">#ex: /polls/</span></span><br><span class="line">	url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">	<span class="comment">#ex: /polls/5/</span></span><br><span class="line">	url(<span class="string">r'^(?P&lt;question_id&gt;\d+)/$'</span>, views.detail, name=<span class="string">'detail'</span>),</span><br><span class="line">	<span class="comment">#ex: /polls/5/results/</span></span><br><span class="line">	url(<span class="string">r'^(?P&lt;question_id&gt;\d+)/results/$'</span>, views.results, name = <span class="string">'results'</span>),</span><br><span class="line">	<span class="comment">#ex: /polls/5/vote/</span></span><br><span class="line">	url(<span class="string">r'^(?P&lt;question_id&gt;\d+)/vote/$'</span>, views.vote, name=<span class="string">'vote'</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -144,8 +134,7 @@
 <p>因为URL模式是一系列正则表达式， 实际上他们能做的事情是没有限制的。 并没有需要添加一个类似于.html的后缀 —— 除非你真的想这么做， 在这种情况下你可以写如下的代码：</p>
 <pre><code>(r&apos;^polls/latest\.html$&apos;,&apos;polls.views.index&apos;),
 </code></pre><p>但是千万别， 这样真的太傻了。</p>
-<p>##写真正能够做一些事的视图</p>
-<p>每个视图都承担着一个或两个责任： 返回一个<code>HttpResponse</code>对象， 包含着这个被请求的页面的信息， 或者引发一个诸如<code>Http404</code>的异常——这都由你决定。</p>
+<h2 id="写真正能够做一些事的视图"><a href="#写真正能够做一些事的视图" class="headerlink" title="写真正能够做一些事的视图"></a>写真正能够做一些事的视图</h2><p>每个视图都承担着一个或两个责任： 返回一个<code>HttpResponse</code>对象， 包含着这个被请求的页面的信息， 或者引发一个诸如<code>Http404</code>的异常——这都由你决定。</p>
 <p>你的视图可以从一个数据库中读取记录。 它可以使用一个模板系统——Django默认的， 或者是第三方的Python模板——或者不使用。 它可以生成一个PDF文件， 输出XML文件， 实时生成zip文件…… 做一切你想的事情， 只要使用相对应的Python支持库就可以。</p>
 <p>而Django所需要的仅仅是一个HttpResponse， 或者是一个异常。</p>
 <p>出于方便起见， 让我们使用Django自带的数据库API。  以下是我们的新的index()视图， 它显示了数据库中最新的五个问题， 用逗号连接， 并根据发布时间排序。</p>
@@ -166,19 +155,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> RequestContext, loader</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Qeustion</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</span><br><span class="line">	template = loader.get_template(<span class="string">'polls/index.html'</span>)</span><br><span class="line">	context = Requestcontext(request, &#123;</span><br><span class="line">		<span class="string">'latest_question_list'</span>: latest_question_list,</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">return</span> HttpResponse(template.render(context))</span><br></pre></td></tr></table></figure>
 <p>这个代码从叫做<code>polls/index.html</code>的文档中读取了模板， 并且把它传递给一个内容对象。 内容对象是一个将模板变量名与Python对象一一映射的字典对象。</p>
 <p>通过你的浏览器访问<code>polls/</code>来读取这个页面， 此时你将能够看见一个列表显示着我们在第一章中创建的”What’s up”问题。 这个链接指向这个问题的详细页面。</p>
-<p>###一个快捷表示: <code>render()</code></p>
-<p>读取一个模板， 填入内容， 再用HttpResponse返回处理后的模板， 这一系列操作经常被执行。 所以Django提供了一个快捷表示， 我们用它重写一下<code>index()</code>视图：</p>
+<h3 id="一个快捷表示-render"><a href="#一个快捷表示-render" class="headerlink" title="一个快捷表示: render()"></a>一个快捷表示: <code>render()</code></h3><p>读取一个模板， 填入内容， 再用HttpResponse返回处理后的模板， 这一系列操作经常被执行。 所以Django提供了一个快捷表示， 我们用它重写一下<code>index()</code>视图：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">	latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</span><br><span class="line">	context = &#123;<span class="string">'latest_question_list'</span>: latest_question_list&#125;</span><br><span class="line">	<span class="keyword">return</span> render(request, <span class="string">'polls/index.html'</span>, context)</span><br></pre></td></tr></table></figure>
 <p>这里我们可以注意到， 如果我们使用了render的话， 我们就不再需要导入<code>loader</code>, <code>RequestContext</code>和<code>HttpResponse</code>了。</p>
 <p><code>render()</code>方法把request对象作为第一参数， 然后把模板名字作为第二参数， 然后一个可选的字典变量作为第三参数。 它返回一个给定的模板通过给定的内容渲染之后得到的HttpResponse对象。</p>
-<p>###引发一个404错误</p>
-<p>现在， 让我们改动一下<code>detail</code>视图 - 那个显示给定问题的详细内容的视图： </p>
+<h3 id="引发一个404错误"><a href="#引发一个404错误" class="headerlink" title="引发一个404错误"></a>引发一个404错误</h3><p>现在， 让我们改动一下<code>detail</code>视图 - 那个显示给定问题的详细内容的视图： </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> Http404</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		question = Question.objects.get(pk = question_id)</span><br><span class="line">	<span class="keyword">except</span> Question.DoesNotExist:</span><br><span class="line">		<span class="keyword">raise</span> Http404(<span class="string">"Question does not exist"</span>)</span><br><span class="line">	<span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>, &#123;<span class="string">'question'</span>: question&#125;)</span><br></pre></td></tr></table></figure>
 <p>这里有一个全新的概念： 如果所要求的ID不存在的话， 这个视图引发了一个Http404异常。</p>
 <p>我们将在稍后讨论你应该在<code>polls/detail.html</code> 模板中放一些什么。 但如果你想尽快地完成这个教程的话， 一个包含如下内容的模板就够了：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--polls/templates/polls/detail.html--&gt;</span><br><span class="line">&#123; &#123; question &#125; &#125;</span><br></pre></td></tr></table></figure>
-<p>###一个快捷表示： <code>get_object_or_404()</code></p>
-<p>调用<code>get()</code>函数， 并在对象不存在的时候引发Http404异常，也是一个十分常见的操作。 Django提供了一个快捷表示。 根据其重写<code>detail()</code>视图，如下所示：</p>
+<h3 id="一个快捷表示：-get-object-or-404"><a href="#一个快捷表示：-get-object-or-404" class="headerlink" title="一个快捷表示： get_object_or_404()"></a>一个快捷表示： <code>get_object_or_404()</code></h3><p>调用<code>get()</code>函数， 并在对象不存在的时候引发Http404异常，也是一个十分常见的操作。 Django提供了一个快捷表示。 根据其重写<code>detail()</code>视图，如下所示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">	<span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>,&#123;<span class="string">'question'</span>: question&#125;)</span><br></pre></td></tr></table></figure>
 <p>这个<code>get_object_or_404()</code>函数把一个Django数据模型作为它的第一参数， 以及任选的键值对作为其它参数。 这个函数把参数传递给<code>get()</code>函数， 如果对象不存在的话， 引发404异常</p>
 <blockquote>
@@ -186,20 +172,17 @@
 <p>因为这样的话就会把数据模型与视图联系在一起。 而Django的一个哲学就是低耦合度。 一些系统自带的合作函数存放于<code>django.shortcuts</code>模型之中</p>
 </blockquote>
 <p>同样也有一个<code>get_list_or_404()</code>函数， 使用方法和<code>get_object_or_404()</code>一样，只不过使用的是<code>filter()</code>函数， 如果列表是空的就返回404异常</p>
-<p>##使用模板系统</p>
-<p>回到我们的民调应用的<code>detail()</code>视图中。 给定一个内容变量<code>question</code>, 我们的<code>polls/detail.html</code>应该长这个样子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--polls/templates/polls/detail.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123; question.question_text &#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123; % for choice in question.choice_set.all % &#125;</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123; &#123; choice.choice_text &#125; &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用模板系统"><a href="#使用模板系统" class="headerlink" title="使用模板系统"></a>使用模板系统</h2><p>回到我们的民调应用的<code>detail()</code>视图中。 给定一个内容变量<code>question</code>, 我们的<code>polls/detail.html</code>应该长这个样子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--polls/templates/polls/detail.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123; question.question_text &#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123; % for choice in question.choice_set.all % &#125;</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123; &#123; choice.choice_text &#125; &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>模板系统使用 点 来访问一个变量的属性。 在上面的<code>{ { question.question_text } }</code>的例子中， 首先Django在question对象中做一次字典查找。  如果没有找到， 他做一次属性查找——在这个例子中成功找到了—— 如果还是失败的话， 他就会做一次列表查找。</p>
 <p>对方法的调用发生在<code>{ % for % }</code>循环之中： <code>question.choice_set.all</code> 被解析为Python的代码<code>question.choice_set.all()</code>， 将会返回一个可迭代的Choice对象并且适于在<code>{ % for % }</code>标签内使用。</p>
-<p>##删去在模板中硬编码的URL</p>
-<p>别忘了， 在之前我们写那个polls/index.html模板中的链接的时候， 我们用了一些硬编码的风格：</p>
+<h2 id="删去在模板中硬编码的URL"><a href="#删去在模板中硬编码的URL" class="headerlink" title="删去在模板中硬编码的URL"></a>删去在模板中硬编码的URL</h2><p>别忘了， 在之前我们写那个polls/index.html模板中的链接的时候， 我们用了一些硬编码的风格：</p>
 <pre><code>&lt;li&gt;&lt;a href=&quot;/polls/{ {question.id} }/&quot;&gt;{ {question.question_text} }&lt;/a&gt;&lt;/li&gt;
 </code></pre><p>在这里使用硬编码，紧耦合方法的弊端在于， 如果要修改链接的话， 会造成相当大的修改模板的工作量。 既然你在<code>polls.urls</code>模块中的url()方法里定义了正则表达式的名字参数， 你就可以使用<code>{ %url% }</code>标签来代替这里特定的url地址。</p>
 <pre><code>&lt;li&gt;&lt;a href = &quot;{ % url &apos;detail&apos; question.id % }&quot;&gt;{ { question.question_text } }&lt;/a&gt;&lt;/li&gt;
 </code></pre><p>这个函数的工作原理是查询<code>polls.urls</code>模块中的URL定义。 你可以清除地看见名称’detail’被做了如下定义：</p>
 <pre><code>url(r&apos;^(?P&lt;question_id&gt;\d+)/$&apos;, views.detail, name=&apos;detail&apos;),
 </code></pre><p>如果你想要把问题的详细页面转换到别的URL上， 也只用修改polls/urls.py就好了。</p>
-<p>##为URL名称确定命名空间</p>
-<p>这个教程项目只包含一个应用：polls。 在真实的Django应用环境中， 可能在同一个项目下有着五个， 十个， 乃至20个或更多不同的应用。 Django是怎样区别其中不同的URL的？ 举例来说， polls应用有一个detail视图， 同样一个博客应用也可能有一个相同的视图。 Django使怎样确保在使用<code>{ % url % }</code>模板标签的时候不至于混乱呢？</p>
+<h2 id="为URL名称确定命名空间"><a href="#为URL名称确定命名空间" class="headerlink" title="为URL名称确定命名空间"></a>为URL名称确定命名空间</h2><p>这个教程项目只包含一个应用：polls。 在真实的Django应用环境中， 可能在同一个项目下有着五个， 十个， 乃至20个或更多不同的应用。 Django是怎样区别其中不同的URL的？ 举例来说， polls应用有一个detail视图， 同样一个博客应用也可能有一个相同的视图。 Django使怎样确保在使用<code>{ % url % }</code>模板标签的时候不至于混乱呢？</p>
 <p>这个问题的答案就是为你的根URL配置添加命名空间。 在<code>mysite/urls.py</code>文件中，添加命名空间的定义。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#mysite/urls.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> patterns, include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = patterns(<span class="string">''</span>,</span><br><span class="line">	url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>, namespace=<span class="string">"polls"</span>)),</span><br><span class="line">	url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>然后把具体模板中的代码从：</p>

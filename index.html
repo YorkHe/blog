@@ -54,11 +54,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这章教程承接第三章结束的地方， 我们将继续那个网络民调应用， 并且将关注与简单的表单处理与精简我们的代码。</p>
-<p>##创造一个简单的表单</p>
-<p>让我们来升级一下上个教程中创建的问题详细内容模板(<code>polls/detail.html</code>)， 让它包含一个HTML的<code>&lt;form&gt;</code>元素:</p>
+<h2 id="创造一个简单的表单"><a href="#创造一个简单的表单" class="headerlink" title="创造一个简单的表单"></a>创造一个简单的表单</h2><p>让我们来升级一下上个教程中创建的问题详细内容模板(<code>polls/detail.html</code>)， 让它包含一个HTML的<code>&lt;form&gt;</code>元素:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--polls/templates/polls/detail.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123; question.question_text &#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % if error_message % &#125;<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123; &#123; error_message &#125; &#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#123; % endif % &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"&#123; % url 'polls:vote' question.id % &#125;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123; % csrf_token % &#125;</span><br><span class="line">&#123; % for choice in question.choice_set.all % &#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"choice"</span> <span class="attr">id</span>=<span class="string">"choice&#123; &#123; forloop.counter &#125; &#125;"</span> <span class="attr">value</span>=<span class="string">"&#123; &#123; choice.id &#125; &#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"choice&#123; &#123; forloop.counter &#125; &#125;"</span>&gt;</span>&#123; &#123; choice.choice_text &#125; &#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Vote"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>快速浏览一下上面的代码：</p>
-
+<ul>
+<li><p>上面的这个模板给每一个选项显示了一个单选按钮。 每一个单选按钮的值与每一个选项的<code>id</code>相联系。 每一个单选按钮的名字都是<code>choice</code>. 这意味着， 当某人选择了这些单选按钮之一然后提交这个页面的时候， 系统会使用POST传递一个数据<code>choice=#</code>, 此处的<code>#</code>，代表选中选项的id。 这是HTML表单的基本概念。</p>
+</li>
+<li><p>我们把这个表单的动作属性设置为<code>{ %url &#39;polls:vote&#39; question.id% }</code>， 然后我们设置动作方法为<code>post</code>。 此处使用<code>method=&#39;post&#39;</code>（与之相对的是<code>method=&#39;get&#39;</code>）十分重要， 因为此处提交表单的这个动作将会出发服务器端的数据操作。 只要当你创建一个需要服务器端数据操作的表单的时候， 使用<code>post</code>总是最佳选择。 这个建议并不仅仅真对于Django， 这是Web开发的实际经验。</p>
+</li>
+<li><p><code>forloop.counter</code>记录了<code>for</code>标签内循环的次数。</p>
+</li>
+<li><p>既然我们创建了一个<code>POST</code>表单（拥有着操作数据的功能），我们就需要担心一下跨站请求伪造(Cross Site Request Forgeries)的问题。 但是谢天谢地，你并不需要太过于担心这个， 因为Django创造了一个非常易用的系统来避免这个问题。 简而言之， 所有使用<code>POST</code>提交，并且目标是一个内链URL的表单， 都需要有一个<code>{ % CSRF token % }</code>标签。</p>
+</li>
+</ul>
         
           <p class="article-more-link">
             <a href="/2016/05/29/译-创建你的第一个Django应用-第四部分/#more">More...</a>
@@ -98,8 +106,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这章教程将继续第二章结束的地方， 我们将继续编写我们的网络民调应用，并切将专注于创建一个界面 - <strong>视图(view)</strong></p>
-<p>##思想</p>
-<p>视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。</p>
+<h2 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h2><p>视图， 是在你的Django应用中具有一个特定模板的特定的函数， 它生成某“种” 特定的Web页面。</p>
 <p>举例来说， 在一个博客应用之中， 你可能会有如下的视图：</p>
 <ul>
 <li>博客主页， 显示最新的几篇博文</li>
@@ -109,7 +116,7 @@
 <li>以日为基础的分类界面， 显示某一天发布的所有博文</li>
 <li>评论动作， 处理对某一篇博文的评论功能</li>
 </ul>
-
+<p>在我们的民意调查应用中， 我们有如下四个视图：</p>
         
           <p class="article-more-link">
             <a href="/2016/05/29/译-创建你的第一个Django应用-第三部分/#more">More...</a>
@@ -152,10 +159,10 @@
 <blockquote>
 <p><strong>思想</strong><br>为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。<br>Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站管理员操作这个系统并且添加新的新闻， 专访， 体育比赛的得分等等。 这些内容将在公共站点显示出来。 Django通过创建一个统一的编辑后台来解决了这个问题。<br>编辑后台并非是为网站访问者所准备的， 他们是为了网站管理员设计的。</p>
 </blockquote>
-<p>##创建一个管理员用户</p>
-<p>首先我们需要创建一个能够登录进入管理员后台的用户。  运行如下代码：</p>
+<h2 id="创建一个管理员用户"><a href="#创建一个管理员用户" class="headerlink" title="创建一个管理员用户"></a>创建一个管理员用户</h2><p>首先我们需要创建一个能够登录进入管理员后台的用户。  运行如下代码：</p>
 <pre><code>$ python manage.py createsuperuser
 </code></pre><p>输入你想要取的用户名后按下回车</p>
+
         
           <p class="article-more-link">
             <a href="/2016/05/29/译-创建你的第一个Django应用-第二部分/#more">More...</a>

@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin04t.png">
 <meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin13t.png">
 <meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin14t.png">
-<meta property="og:updated_time" content="2016-05-29T16:12:37.010Z">
+<meta property="og:updated_time" content="2016-05-29T16:18:54.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]创建你的第一个Django应用 - 第二部分">
 <meta name="twitter:description" content="这章教程从教程一结束的地方开始。 我们继续编写这个网络民调应用， 并且将关注于Django自动生成的后台站点。
@@ -79,8 +79,7 @@
 <blockquote>
 <p><strong>思想</strong><br>为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。<br>Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站管理员操作这个系统并且添加新的新闻， 专访， 体育比赛的得分等等。 这些内容将在公共站点显示出来。 Django通过创建一个统一的编辑后台来解决了这个问题。<br>编辑后台并非是为网站访问者所准备的， 他们是为了网站管理员设计的。</p>
 </blockquote>
-<p>##创建一个管理员用户</p>
-<p>首先我们需要创建一个能够登录进入管理员后台的用户。  运行如下代码：</p>
+<h2 id="创建一个管理员用户"><a href="#创建一个管理员用户" class="headerlink" title="创建一个管理员用户"></a>创建一个管理员用户</h2><p>首先我们需要创建一个能够登录进入管理员后台的用户。  运行如下代码：</p>
 <pre><code>$ python manage.py createsuperuser
 </code></pre><p>输入你想要取的用户名后按下回车</p>
 <pre><code>Username: admin
@@ -90,8 +89,7 @@
 <pre><code>Password: ********
 Password(again): ********
 Superuser created successfully.
-</code></pre><p>##启动开发服务器</p>
-<p>Django管理员后台将会默认自动运行。 让我们启动管理员后台然后探索一下它吧。</p>
+</code></pre><h2 id="启动开发服务器"><a href="#启动开发服务器" class="headerlink" title="启动开发服务器"></a>启动开发服务器</h2><p>Django管理员后台将会默认自动运行。 让我们启动管理员后台然后探索一下它吧。</p>
 <p>回忆一下在第一章教程中学到的如何启动开发服务器的命令：</p>
 <pre><code>$ python manage.py runserver
 </code></pre><p>现在， 启动一个网页浏览器， 然后访问你的根域名的”/admin/“， 比如<a href="http://127.0.0.1:8000" target="_blank" rel="external">http://127.0.0.1:8000</a> 你将会看见如下的管理员登录界面：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin01.png" alt="管理员登陆界面"></p>
@@ -103,15 +101,12 @@ Superuser created successfully.
    ...
 </code></pre><p>这说明你很有可能使用着一个与此教程不相符的Django版本。 你将需要一个更新的Django或者一个更老的教程</p>
 </blockquote>
-<p>##进入管理员后台</p>
-<p>现在试着使用你在之前的步骤中创建的超级用户账号登录进去。 你应该能够看见如下的Django管理员主页：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin02.png" alt="Django管理员主页"></p>
+<h2 id="进入管理员后台"><a href="#进入管理员后台" class="headerlink" title="进入管理员后台"></a>进入管理员后台</h2><p>现在试着使用你在之前的步骤中创建的超级用户账号登录进去。 你应该能够看见如下的Django管理员主页：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin02.png" alt="Django管理员主页"></p>
 <p>你将看见几种可以修改的内容： 用户组(Groups)和用户(Users)。 这些功能由django.contrib.auth， Django的授权功能框架提供。</p>
-<p>##让我们的民调应用能够在后台系统中进行修改</p>
-<p>但是我们写的应用在哪里？ 它并没有显示在后台系统里。</p>
+<h2 id="让我们的民调应用能够在后台系统中进行修改"><a href="#让我们的民调应用能够在后台系统中进行修改" class="headerlink" title="让我们的民调应用能够在后台系统中进行修改"></a>让我们的民调应用能够在后台系统中进行修改</h2><p>但是我们写的应用在哪里？ 它并没有显示在后台系统里。</p>
 <p>其实只要做一件事情就够了： 我们需要告诉管理员后台Question对象具有一个管理员借口。 要完成这件事， 打开polls/admin.py 文件， 然后作如下修改：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure>
-<p>##探索一下免费（free）的管理员功能</p>
-<p>现在我们已经把Question对象在管理员后台进行了注册， Django现在明白它应该被显示在后台系统的主页中：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin03t.png" alt="后台系统"></p>
+<h2 id="探索一下免费（free）的管理员功能"><a href="#探索一下免费（free）的管理员功能" class="headerlink" title="探索一下免费（free）的管理员功能"></a>探索一下免费（free）的管理员功能</h2><p>现在我们已经把Question对象在管理员后台进行了注册， Django现在明白它应该被显示在后台系统的主页中：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin03t.png" alt="后台系统"></p>
 <p>点击”Questions”， 你就进入了问题列表的 “Change list”(修改列表)之中。 这个页面显示在数据库之中的所有问题， 并允许你选择一个来对其进行修改。 这里有我们在先前的教程之中创建的”What’s up”问题</p>
 <p><img src="https://docs.djangoproject.com/en/1.7/_images/admin04t.png" alt="What&#39;s up"></p>
 <p>点击”What’s up”来对其进行修改</p>
@@ -131,8 +126,7 @@ Superuser created successfully.
 </ul>
 <p>如果”发布日期”的值与你在之前创建这个问题的时间并不相同的话。这可能意味着你忘记了修正<code>TIME_ZONE</code>设定的值。 改正它， 并重新读取这个界面， 检查一下是否显示正确的值。</p>
 <p>点击“今天”或者“现在“ 快捷方式来修改“发布日期”。 然后点击”保存并继续“， 然后点击右上方的“历史” ， 你会看见一个列举着通过Django管理后台对这个对象进行修改的记录的页面， 时间戳显示在左侧， 修改者显示在中间。<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin06t.png" alt="TimeStamp"></p>
-<p>##自定义管理员表单</p>
-<p>给你一点时间来为你省下不用写的那么一大堆代码感到惊讶。 通过把Question对象利用admin.site.register(Qustion)来注册到管理后台， Django能够通过其自己的理解创建一个默认的表单。 一般来说， 你可能会希望自定义这个表单的样子以及工作方式。 你可以在通过注册这个对象时告诉Django这些选项来做到这一点。</p>
+<h2 id="自定义管理员表单"><a href="#自定义管理员表单" class="headerlink" title="自定义管理员表单"></a>自定义管理员表单</h2><p>给你一点时间来为你省下不用写的那么一大堆代码感到惊讶。 通过把Question对象利用admin.site.register(Qustion)来注册到管理后台， Django能够通过其自己的理解创建一个默认的表单。 一般来说， 你可能会希望自定义这个表单的样子以及工作方式。 你可以在通过注册这个对象时告诉Django这些选项来做到这一点。</p>
 <p>然我们看看它是如何做到把编辑表单的两个域的顺序调换过来把。 把<code>admin.site.register(Question)</code>一行做如下替换：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fields = [<span class="string">'pub_date'</span>, <span class="string">'question_text'</span>]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QusestionAdmin)</span><br></pre></td></tr></table></figure></p>
 <p>你只需照着这个模式来就可以： 创建一个数据模型的管理员对象， 然后把它作为一个第二变量传递给admin.site.register()　——　在任何你想要为一个对象改变其管理员后台选项的时候</p>
 <p>上面的这个改动把”发布日期“　提前到了　“问题内容”之前<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin07.png" alt="Before"></p>
@@ -144,8 +138,7 @@ Superuser created successfully.
 <p>你可以为每个分类任意制定HTML类。 Django提供了一个<code>collapse</code>类， 在默认情况下， 会把这个分类给折叠起来。 这在你有一个很长的表单的时候十分重要。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fieldsets = [</span><br><span class="line">		(<span class="keyword">None</span>, &#123;<span class="string">'fields'</span>:[<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">		(<span class="string">'Date information'</span>,&#123;<span class="string">'fields'</span>:[<span class="string">'pub_date'</span>], <span class="string">'classes'</span>:[<span class="string">'collapse'</span>]&#125;),</span><br><span class="line">	]</span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
 <p><img src="https://docs.djangoproject.com/en/1.7/_images/admin09.png" alt="Collapse"></p>
-<p>##添加相关的数据对象</p>
-<p>好了， 我们有了问题对象的后台界面了。 但是一个问题有多个选项，而目前的后台系统并不能显示选项。</p>
+<h2 id="添加相关的数据对象"><a href="#添加相关的数据对象" class="headerlink" title="添加相关的数据对象"></a>添加相关的数据对象</h2><p>好了， 我们有了问题对象的后台界面了。 但是一个问题有多个选项，而目前的后台系统并不能显示选项。</p>
 <p>仅仅是<strong>目前</strong>来说。</p>
 <p>有两个方式能够解决这个问题。 第一种方式是就像我们之前注册问题对象那样注册一个选项对象。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Choice, Question</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">admin.site.register(Choice)</span><br></pre></td></tr></table></figure>
@@ -166,8 +159,7 @@ Superuser created successfully.
 <p>继承了<code>admin.TabularInline</code>类， （而非<code>StackedInline</code>), 相关的对象就会以一个更为紧凑的方式进行排列：</p>
 <p><img src="https://docs.djangoproject.com/en/1.7/_images/admin12t.png" alt="compact"></p>
 <p>注意到那个多出来的”Delete?”列了么？ 那使得你可以删掉后面再新增的选项。</p>
-<p>##自定义修改列表</p>
-<p>现在问题的管理界面看上去挺不错，让我们对“修改列表”页面——那个显示着 数据库中所有问题的页面做一些小小的修改吧。 </p>
+<h2 id="自定义修改列表"><a href="#自定义修改列表" class="headerlink" title="自定义修改列表"></a>自定义修改列表</h2><p>现在问题的管理界面看上去挺不错，让我们对“修改列表”页面——那个显示着 数据库中所有问题的页面做一些小小的修改吧。 </p>
 <p>现在这个页面长这个样子：</p>
 <p><img src="https://docs.djangoproject.com/en/1.7/_images/admin04t.png" alt="enter image description here"></p>
 <p>默认情况下，Django会显示每个对象的str()方法的返回值。 但是在某些时候如果只显示个别的域会更有帮助。 出于这个目的， 我们可以使用<code>list_display</code>管理选项。 这个选项划定了一个显示对象的元组， 元组内的元素作为最终显示表单的列进行表示。</p>
@@ -188,10 +180,9 @@ Superuser created successfully.
 <pre><code>search_fields = [&apos;question_text&apos;]
 </code></pre><p>这在修改列表界面的顶端添加了一个搜索框。 当某个人输入一个搜索词的时候， Django会搜索<code>question_text</code> 域。 你想包括多少个域都可以 - 因为这个搜索背后使用的是SQL的<code>LIKE</code> 命令， 所以限制一下你的搜索域可能会对搜索速度等有更大的帮助。</p>
 <p>这个界面还提供了换页的连接。 默认可以在每一个页显示100个元素。  如果你喜欢的话，换页连接， 搜索框， 过滤器， 日期层次和列表头排序这几项功能是可以工作得很顺畅的。</p>
-<p>##自定义管理后台的外观</p>
-<p>很明显， 在管理后台每一页的顶端有一个”Django 管理后台”的字是很蠢的。 这只是一个文字占位符而已。</p>
+<h2 id="自定义管理后台的外观"><a href="#自定义管理后台的外观" class="headerlink" title="自定义管理后台的外观"></a>自定义管理后台的外观</h2><p>很明显， 在管理后台每一页的顶端有一个”Django 管理后台”的字是很蠢的。 这只是一个文字占位符而已。</p>
 <p>通过Django的模板系统，他们是很容易改变的。 Django的管理后台是依靠Django自身搭建的， 它的接口也使用的Django自身的模板系统。</p>
-<p>###自定义你的项目的模板<br>在你的项目目录下创建一个<code>templates</code>文件夹。 模板可以存放在任何可以被Django访问到的地方。 (Django和你的服务器运行在同一个地方)。 不管怎么说， 把你的模板与项目放在同一个地方总是一个很好的习惯。</p>
+<h3 id="自定义你的项目的模板"><a href="#自定义你的项目的模板" class="headerlink" title="自定义你的项目的模板"></a>自定义你的项目的模板</h3><p>在你的项目目录下创建一个<code>templates</code>文件夹。 模板可以存放在任何可以被Django访问到的地方。 (Django和你的服务器运行在同一个地方)。 不管怎么说， 把你的模板与项目放在同一个地方总是一个很好的习惯。</p>
 <p>打开你的设置文件， 添加一个<code>TEMPLATE_DIRS</code>设置选项：</p>
 <pre><code>TEMPLATE_DIRS = [os.path.join(BASE_DIR, &apos;templates&apos;)]
 </code></pre><p>TEMPLATE_DIRS 是一个当Django读取模板文件时查询的地址列表。</p>
@@ -209,11 +200,9 @@ Superuser created successfully.
 <p>我们通过这种方法来教你如何重写模板。 在实际的项目中， 你更有可能使用<code>django.contrib.admin.AdminSite.site_header</code>属性来更简单地做这个自定义的操作。</p>
 <p>这个模板文件包含了许许多多类似于<code>{ %block brading % }</code>和<code>{ {title} }</code>的文字。 这里的<code>{ %</code>和<code>{ {</code>标签都属于Django的模板语言的一部分。 当Django对 admin/base_site.html进行渲染的时候， 这个模板语言将会被作为基准来生成最终的HTML页面。 如果你现在对于Django的模板语言一无所知， 也不需要担心。 我们将会在第三章的教程中仔细介绍它的。 </p>
 <p>请记住， 任一个Django的默认后台系统都是可以被修改的。 要想修改一个模板， 只需做如同你对base_site.html做的事情一样 -  把它从默认的目录拷贝出来， 然后对其做修改。</p>
-<p>###自定义你的<em>应用</em>模板</p>
-<p>聪明的读者会问： 既然默认情况下, <code>TEMPLATE_DIRS</code>是空的， 那么Django是怎样招到默认的后台系统模板的？ 这个问题的答案是： 在默认情况下， Django自动地查找每一个应用包的<code>templates/</code>子目录， 作为一个备用方法（别忘了django.contrib.admin 也是一个应用）</p>
+<h2 id="自定义你的应用模板"><a href="#自定义你的应用模板" class="headerlink" title="自定义你的应用模板"></a>自定义你的<em>应用</em>模板</h2><p>聪明的读者会问： 既然默认情况下, <code>TEMPLATE_DIRS</code>是空的， 那么Django是怎样招到默认的后台系统模板的？ 这个问题的答案是： 在默认情况下， Django自动地查找每一个应用包的<code>templates/</code>子目录， 作为一个备用方法（别忘了django.contrib.admin 也是一个应用）</p>
 <p>我们的民调应用并非十分复杂， 所以我们不需要自定义一个后台模板。 但是如果它逐渐发展至更加复杂并需要修改以增加部分功能的时候， 修改这个应用的模板，而非修改整个项目的通用模板， 可能会是一个更好的办法。 在这种情况下， 你可以把这个民调应用使用与任一个新的应用中， 并且确保它能够自己找到其需要的自定义模板。</p>
-<p>###自定义后台主页</p>
-<p>同样的， 你可能希望要自定义Django后台主页的样子。</p>
+<h3 id="自定义后台主页"><a href="#自定义后台主页" class="headerlink" title="自定义后台主页"></a>自定义后台主页</h3><p>同样的， 你可能希望要自定义Django后台主页的样子。</p>
 <p>默认情况下， 它以字母序显示<code>INSTALLED_APPS</code>中所有在管理员应用中注册的应用。 你可能希望能够对整体页面布局做一个大的调整。 毕竟后台主页是整个后台系统最重要的页面， 它应当做到尽可能的易用。</p>
 <p>被提供来自定义的模板是 admin/index.html （做你之前对base_site.html相同的事——把它从默认文件夹拷出来， 然后再做修改）。 修改这个文件， 你会看见它使用了一个模板变量叫做<code>app_list</code>。 这个变量包含了所有安装的Django应用。  你也可以不使用这个默认的变量， 反而直接引用一个确定的应用的管理界面。  再说一遍， 不用担心你现在不能理解模板语言， 我们将会在第三章中仔细介绍的。</p>
 
