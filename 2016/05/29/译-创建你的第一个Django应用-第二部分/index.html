@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[译]创建你的第一个Django应用 - 第二部分 | 42 Answers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这章教程从教程一结束的地方开始。 我们继续编写这个网络民调应用， 并且将关注于Django自动生成的后台站点。
+
+思想为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]创建你的第一个Django应用 - 第二部分">
+<meta property="og:url" content="http://blog.york42.com/2016/05/29/译-创建你的第一个Django应用-第二部分/index.html">
+<meta property="og:site_name" content="42 Answers">
+<meta property="og:description" content="这章教程从教程一结束的地方开始。 我们继续编写这个网络民调应用， 并且将关注于Django自动生成的后台站点。
+
+思想为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin01.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin02.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin03t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin04t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin05t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin06t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin07.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin08t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin09.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin10.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin11t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin15t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin12t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin04t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin13t.png">
+<meta property="og:image" content="https://docs.djangoproject.com/en/1.7/_images/admin14t.png">
+<meta property="og:updated_time" content="2016-05-29T16:08:13.883Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]创建你的第一个Django应用 - 第二部分">
+<meta name="twitter:description" content="这章教程从教程一结束的地方开始。 我们继续编写这个网络民调应用， 并且将关注于Django自动生成的后台站点。
+
+思想为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站">
+<meta name="twitter:image" content="https://docs.djangoproject.com/en/1.7/_images/admin01.png">
+  
+    <link rel="alternative" href="/atom.xml" title="42 Answers" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-译-创建你的第一个Django应用-第二部分" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [译]创建你的第一个Django应用 - 第二部分
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/29/译-创建你的第一个Django应用-第二部分/" class="article-date">
+  <time datetime="2016-05-29T15:55:29.000Z" itemprop="datePublished">2016-05-29</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这章教程从教程一结束的地方开始。 我们继续编写这个网络民调应用， 并且将关注于Django自动生成的后台站点。</p>
+<blockquote>
+<p><strong>思想</strong><br>为你的同事或者客户生成一个自动站点，以供他们添加，修改和删除内容是一件多么无趣而又重复，缺乏创造的事情。 出于这个原因， Django提供了完全自动化的基于数据模型的后台站点的生成功能。<br>Django最初是作为一个新闻站点框架使用的， 有着非常清晰的内容提供者和公众的角色区分。 网站管理员操作这个系统并且添加新的新闻， 专访， 体育比赛的得分等等。 这些内容将在公共站点显示出来。 Django通过创建一个统一的编辑后台来解决了这个问题。<br>编辑后台并非是为网站访问者所准备的， 他们是为了网站管理员设计的。</p>
+</blockquote>
+<p>##创建一个管理员用户</p>
+<p>首先我们需要创建一个能够登录进入管理员后台的用户。  运行如下代码：</p>
+<pre><code>$ python manage.py createsuperuser
+</code></pre><p>输入你想要取的用户名后按下回车</p>
+<pre><code>Username: admin
+</code></pre><p>然后输入邮箱</p>
+<pre><code>Email address: admin@example.com
+</code></pre><p>最后一步是输入密码， 你将会被要求输入两次密码， 第二次是对第一次输入的密码的确认。</p>
+<pre><code>Password: ********
+Password(again): ********
+Superuser created successfully.
+</code></pre><p>##启动开发服务器</p>
+<p>Django管理员后台将会默认自动运行。 让我们启动管理员后台然后探索一下它吧。</p>
+<p>回忆一下在第一章教程中学到的如何启动开发服务器的命令：</p>
+<pre><code>$ python manage.py runserver
+</code></pre><p>现在， 启动一个网页浏览器， 然后访问你的根域名的”/admin/“， 比如<a href="http://127.0.0.1:8000" target="_blank" rel="external">http://127.0.0.1:8000</a> 你将会看见如下的管理员登录界面：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin01.png" alt="管理员登陆界面"></p>
+<p>因为翻译功能会被自动启动， 所以很有可能你会看见这个登录界面的语言将会与你的浏览器的默认语言保持一致。 </p>
+<blockquote>
+<p><strong>和你所看见的不一样？</strong><br>如果这时候，你看见的是如下的错误页面而非如上的登录界面的话：</p>
+<pre><code>ImportError at /admin
+   cannot import name patterns
+   ...
+</code></pre><p>这说明你很有可能使用着一个与此教程不相符的Django版本。 你将需要一个更新的Django或者一个更老的教程</p>
+</blockquote>
+<p>##进入管理员后台</p>
+<p>现在试着使用你在之前的步骤中创建的超级用户账号登录进去。 你应该能够看见如下的Django管理员主页：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin02.png" alt="Django管理员主页"></p>
+<p>你将看见几种可以修改的内容： 用户组(Groups)和用户(Users)。 这些功能由django.contrib.auth， Django的授权功能框架提供。</p>
+<p>##让我们的民调应用能够在后台系统中进行修改</p>
+<p>但是我们写的应用在哪里？ 它并没有显示在后台系统里。</p>
+<p>其实只要做一件事情就够了： 我们需要告诉管理员后台Question对象具有一个管理员借口。 要完成这件事， 打开polls/admin.py 文件， 然后作如下修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure>
+<p>##探索一下免费（free）的管理员功能</p>
+<p>现在我们已经把Question对象在管理员后台进行了注册， Django现在明白它应该被显示在后台系统的主页中：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin03t.png" alt="后台系统"></p>
+<p>点击”Questions”， 你就进入了问题列表的 “Change list”(修改列表)之中。 这个页面显示在数据库之中的所有问题， 并允许你选择一个来对其进行修改。 这里有我们在先前的教程之中创建的”What’s up”问题</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin04t.png" alt="What&#39;s up"></p>
+<p>点击”What’s up”来对其进行修改</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin05t.png" alt="enter image description here"></p>
+<p>此处需要注意：</p>
+<ul>
+<li>这个表格由Question数据模型自动生成</li>
+<li>不同的域类型(<code>DateTimeField</code>, <code>CharField</code>)对应于不同的HTML输入空间。 每一种域类型都明白其应当如何在Django后台中展现/</li>
+<li>每一个<code>DateTimeField</code> 都有其自己的JavaScript快捷方式。 日期表示有一个“今天”快捷方式， 并且有一个日历图标。 时间表示有一个“现在”快捷方式并且有一个钟表图标，弹出常用时间的列表。</li>
+</ul>
+<p>页面的末尾给你一些选项：</p>
+<ul>
+<li>保存 - 保存更改并且返回这个对象的修改列表页面</li>
+<li>保存并继续 - 保存更改并重新读取到这个对象的管理页面</li>
+<li>保存并添加下一个 - 保存更改并且从这个对象读取一个新的创建表单</li>
+<li>删除 - 显示一个删除确认表单</li>
+</ul>
+<p>如果”发布日期”的值与你在之前创建这个问题的时间并不相同的话。这可能意味着你忘记了修正<code>TIME_ZONE</code>设定的值。 改正它， 并重新读取这个界面， 检查一下是否显示正确的值。</p>
+<p>点击“今天”或者“现在“ 快捷方式来修改“发布日期”。 然后点击”保存并继续“， 然后点击右上方的“历史” ， 你会看见一个列举着通过Django管理后台对这个对象进行修改的记录的页面， 时间戳显示在左侧， 修改者显示在中间。<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin06t.png" alt="TimeStamp"></p>
+<p>##自定义管理员表单</p>
+<p>给你一点时间来为你省下不用写的那么一大堆代码感到惊讶。 通过把Question对象利用admin.site.register(Qustion)来注册到管理后台， Django能够通过其自己的理解创建一个默认的表单。 一般来说， 你可能会希望自定义这个表单的样子以及工作方式。 你可以在通过注册这个对象时告诉Django这些选项来做到这一点。</p>
+<p>然我们看看它是如何做到把编辑表单的两个域的顺序调换过来把。 把<code>admin.site.register(Question)</code>一行做如下替换：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fields = [<span class="string">'pub_date'</span>, <span class="string">'question_text'</span>]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QusestionAdmin)</span><br></pre></td></tr></table></figure></p>
+<p>你只需照着这个模式来就可以： 创建一个数据模型的管理员对象， 然后把它作为一个第二变量传递给admin.site.register()　——　在任何你想要为一个对象改变其管理员后台选项的时候</p>
+<p>上面的这个改动把”发布日期“　提前到了　“问题内容”之前<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin07.png" alt="Before"></p>
+<p>对于两个域来说， 这并不引人惊讶。 但是对于一个有着很多个域的管理员表单来说， 为这些域给定一个确定的顺序就显得至关重要了。 </p>
+<p>说到有很多个域的表单， 你可能会希望把这些域分成不同的类别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fieldsets = [</span><br><span class="line">		(<span class="keyword">None</span>, &#123;<span class="string">'fields'</span>:[<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">		(<span class="string">'Date information'</span>, &#123;<span class="string">'fields'</span>:[<span class="string">'pub_date'</span>]&#125;),</span><br><span class="line">	]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
+<p><code>fieldsets</code>内的每个元组的第一个元素，就是每一个不同的类别的标题。  我们的表格现在长这个样子：</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin08t.png" alt="form"></p>
+<p>你可以为每个分类任意制定HTML类。 Django提供了一个<code>collapse</code>类， 在默认情况下， 会把这个分类给折叠起来。 这在你有一个很长的表单的时候十分重要。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fieldsets = [</span><br><span class="line">		(<span class="keyword">None</span>, &#123;<span class="string">'fields'</span>:[<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">		(<span class="string">'Date information'</span>,&#123;<span class="string">'fields'</span>:[<span class="string">'pub_date'</span>], <span class="string">'classes'</span>:[<span class="string">'collapse'</span>]&#125;),</span><br><span class="line">	]</span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin09.png" alt="Collapse"></p>
+<p>##添加相关的数据对象</p>
+<p>好了， 我们有了问题对象的后台界面了。 但是一个问题有多个选项，而目前的后台系统并不能显示选项。</p>
+<p>仅仅是<strong>目前</strong>来说。</p>
+<p>有两个方式能够解决这个问题。 第一种方式是就像我们之前注册问题对象那样注册一个选项对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Choice, Question</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">admin.site.register(Choice)</span><br></pre></td></tr></table></figure>
+<p>现在”Choice”也可以在后台系统被访问到了。 “添加选项” 的表单像这个样子：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin10.png" alt="Choice"></p>
+<p>在这个表单中， Question域作为一个选项框存在。 它包含着数据库中的所有问题。 Django懂得一个“外键”意味着这个域应当在后台表单中被表达为一个选项框。 在现在， 选项框中只有一个问题。</p>
+<p>注意在Question旁边的那个“添加新问题”链接。 每一个有着外键关系的域都有这么一个选项。 当你点击它的时候， 有一个带着“添加问题”表单的窗口会弹出来。 如果你在这个窗口之中添加了一个新的问题并点击保存。 DJango会将其存进数据库中并且会动态地在你所浏览的这个页面的选项框中添加你刚刚添加的这个问题。 </p>
+<p>但是， 实际上， 这是一个十分低效的添加问题的方法。 更好的方法是在你创建一个新问题的时候就创建相对应的一族选项。 让我们开始做吧。</p>
+<p>删除Choice模型调用的register函数， 然后依照如下代码进行修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Choice, Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChoiceInline</span><span class="params">(admin.StackedInline)</span>:</span></span><br><span class="line">	model = Choice</span><br><span class="line">	extra = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">	fieldsets = [</span><br><span class="line">		(<span class="keyword">None</span>, &#123;<span class="string">'fields'</span>:[<span class="string">'question_text'</span>]&#125;),</span><br><span class="line">		(<span class="string">'Date information'</span>,&#123;<span class="string">'fields'</span>:[<span class="string">'pub_date'</span>], <span class="string">'classes'</span>:[<span class="string">'collapse'</span>]&#125;),</span><br><span class="line">	]</span><br><span class="line">	inlines = [ChoiceInline]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
+<p>以上代码告诉Django， Choice选项由Question管理主页进行编辑。 默认情况下， 提供3个空白的选项以供选择。</p>
+<p>读取“添加问题”页面来看看它长什么样子。</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin11t.png" alt="ADD Question"></p>
+<p>工作原理如下： 这里有三个空白的选项 —— 由extra定义的—— 每一次你访问这个已经存在的类的时候， 你都会得到另外三个空白的选项。</p>
+<p>在这三个空白选项的最后， 你会看见一个“添加另一个新的选项”链接， 如果你点击了它， 就会有一个更新的选项被添加进去。 你这时可以点击新的选项的右上角的那个“叉”来删除他。 但是你不能删除默认的那三个选项：</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin15t.png" alt="Add"></p>
+<p>有一个小小的问题就是，这么多选项占据了满满一个屏幕。 出于这个原因， Django提供了一个更为灵活的方式将每一个选项极其相关内容在同一行进行显示。  你只需要依照如下修改<code>ChoiceInline</code>就可以：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChoiceInline</span><span class="params">(admin.TabularInline)</span>:</span></span><br><span class="line">	<span class="comment">#...</span></span><br></pre></td></tr></table></figure>
+<p>继承了<code>admin.TabularInline</code>类， （而非<code>StackedInline</code>), 相关的对象就会以一个更为紧凑的方式进行排列：</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin12t.png" alt="compact"></p>
+<p>注意到那个多出来的”Delete?”列了么？ 那使得你可以删掉后面再新增的选项。</p>
+<p>##自定义修改列表</p>
+<p>现在问题的管理界面看上去挺不错，让我们对“修改列表”页面——那个显示着 数据库中所有问题的页面做一些小小的修改吧。 </p>
+<p>现在这个页面长这个样子：</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin04t.png" alt="enter image description here"></p>
+<p>默认情况下，Django会显示每个对象的str()方法的返回值。 但是在某些时候如果只显示个别的域会更有帮助。 出于这个目的， 我们可以使用<code>list_display</code>管理选项。 这个选项划定了一个显示对象的元组， 元组内的元素作为最终显示表单的列进行表示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="comment">#...</span></span><br><span class="line">    list_display = (<span class="string">'question_text'</span>, <span class="string">'pub_date'</span>)</span><br></pre></td></tr></table></figure>
+<p>为了更好的显示， 我们把在第一章教程中创建的自定义方法<code>was_published_recently</code>也包括进来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/admin.py</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    <span class="comment">#...</span></span><br><span class="line">    list_display = (<span class="string">'question_text'</span>, <span class="string">'pub_date'</span>, <span class="string">'was_published_recently'</span>)</span><br></pre></td></tr></table></figure>
+<p>现在问题的修改列表长这个样子：</p>
+<p><img src="https://docs.djangoproject.com/en/1.7/_images/admin13t.png" alt="enter image description here"></p>
+<p>你可以通过点击列表的表头来对其中的值进行排序–除了<code>was_published_recently</code>之外。 因为目前还不支持对一个自建方法进行排序。 同时还要注意的是， <code>was_published_recently</code>方法的表头名字是将方法名的下划线用空格代替， 之后把首字母大写得到。 并且这一列的每一行都包括着这个方法的出输出值的字符串表示。</p>
+<p>你可以通过给模型方法一些新的属性改正这个列表的显示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/models.py</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment">#...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">    was_published_recently.admin_order_field = <span class="string">'pub_date'</span></span><br><span class="line">    was_published_recently.boolean = <span class="keyword">True</span></span><br><span class="line">    was_published_recently.short_description = <span class="string">'Published recently?'</span></span><br></pre></td></tr></table></figure>
+<p>阅读<a href="https://docs.djangoproject.com/en/1.7/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display" target="_blank" rel="external">“list_display”</a>文档来获得更多关于这些方法属性的信息</p>
+<p>再一次修改你的 polls/admin.py 文件来添加一个对于Question修改列表页面的改进 ： 一个使用list_filter方法的过滤器。 在QuestionAdmin方法中添加如下一行：</p>
+<pre><code>list_filter = [&apos;pub_date&apos;]
+</code></pre><p>这一行代码添加了一个允许人们按照<code>pub_date</code>域来过滤表内信息的侧边栏：<br><img src="https://docs.djangoproject.com/en/1.7/_images/admin14t.png" alt="&quot;filter&quot;"></p>
+<p>这一种类型的过滤器的显示取决于它所基于的域的数据类型。 因为<code>pub_date</code>是<code>DateTimeField</code>类型的。 Django懂得应该给予其如下的过滤选项:任何时候、今天、七天内、这个月、这年</p>
+<p>到目前为止， 一切看上去都还好。  让我们再添加一点搜索功能：</p>
+<pre><code>search_fields = [&apos;question_text&apos;]
+</code></pre><p>这在修改列表界面的顶端添加了一个搜索框。 当某个人输入一个搜索词的时候， Django会搜索<code>question_text</code> 域。 你想包括多少个域都可以 - 因为这个搜索背后使用的是SQL的<code>LIKE</code> 命令， 所以限制一下你的搜索域可能会对搜索速度等有更大的帮助。</p>
+<p>这个界面还提供了换页的连接。 默认可以在每一个页显示100个元素。  如果你喜欢的话，换页连接， 搜索框， 过滤器， 日期层次和列表头排序这几项功能是可以工作得很顺畅的。</p>
+<p>##自定义管理后台的外观</p>
+<p>很明显， 在管理后台每一页的顶端有一个”Django 管理后台”的字是很蠢的。 这只是一个文字占位符而已。</p>
+<p>通过Django的模板系统，他们是很容易改变的。 Django的管理后台是依靠Django自身搭建的， 它的接口也使用的Django自身的模板系统。</p>
+<p>###自定义你的项目的模板<br>在你的项目目录下创建一个<code>templates</code>文件夹。 模板可以存放在任何可以被Django访问到的地方。 (Django和你的服务器运行在同一个地方)。 不管怎么说， 把你的模板与项目放在同一个地方总是一个很好的习惯。</p>
+<p>打开你的设置文件， 添加一个<code>TEMPLATE_DIRS</code>设置选项：</p>
+<pre><code>TEMPLATE_DIRS = [os.path.join(BASE_DIR, &apos;templates&apos;)]
+</code></pre><p>TEMPLATE_DIRS 是一个当Django读取模板文件时查询的地址列表。</p>
+<p>现在在<code>templates</code>里创建一个<code>admin</code>目录， 把Django框架源代码(django/contrib/admin/templates)中的admin/base_site.html文件拷进该文件夹中。</p>
+<blockquote>
+<p>Django源代码放在哪里？<br>如果你在寻找Django框架源代码的时候出现了问题， 请运行如下代码：</p>
+<pre><code>$ python -c &quot;
+    import sys
+    sys.path = sys.path[1:]
+    import django
+    print(django.__path__)&quot;
+</code></pre></blockquote>
+<p>然后就只需打开文件，把<code>{ {site_header|default:_(&#39;Django administration&#39;)} }</code>（包括大括号）给替换成你想要写的站点名字就可以了。 修改完的代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; % block crading % &#125;</span><br><span class="line">&lt;h1 id=&quot;site-name&quot;&gt;&lt;a href=&quot;&#123; % url &apos;admin:index&apos; % &#125;&quot;&gt;Polls Administration&lt;/a&gt;&lt;/h1&gt;</span><br><span class="line">&#123; % endblock % &#125;</span><br></pre></td></tr></table></figure>
+<p>我们通过这种方法来教你如何重写模板。 在实际的项目中， 你更有可能使用<code>django.contrib.admin.AdminSite.site_header</code>属性来更简单地做这个自定义的操作。</p>
+<p>这个模板文件包含了许许多多类似于<code>{ %block brading % }</code>和<code>{ {title} }</code>的文字。 这里的<code>{ %</code>和<code>{ {</code>标签都属于Django的模板语言的一部分。 当Django对 admin/base_site.html进行渲染的时候， 这个模板语言将会被作为基准来生成最终的HTML页面。 如果你现在对于Django的模板语言一无所知， 也不需要担心。 我们将会在第三章的教程中仔细介绍它的。 </p>
+<p>请记住， 任一个Django的默认后台系统都是可以被修改的。 要想修改一个模板， 只需做如同你对base_site.html做的事情一样 -  把它从默认的目录拷贝出来， 然后对其做修改。</p>
+<p>###自定义你的<em>应用</em>模板</p>
+<p>聪明的读者会问： 既然默认情况下, <code>TEMPLATE_DIRS</code>是空的， 那么Django是怎样招到默认的后台系统模板的？ 这个问题的答案是： 在默认情况下， Django自动地查找每一个应用包的<code>templates/</code>子目录， 作为一个备用方法（别忘了django.contrib.admin 也是一个应用）</p>
+<p>我们的民调应用并非十分复杂， 所以我们不需要自定义一个后台模板。 但是如果它逐渐发展至更加复杂并需要修改以增加部分功能的时候， 修改这个应用的模板，而非修改整个项目的通用模板， 可能会是一个更好的办法。 在这种情况下， 你可以把这个民调应用使用与任一个新的应用中， 并且确保它能够自己找到其需要的自定义模板。</p>
+<p>###自定义后台主页</p>
+<p>同样的， 你可能希望要自定义Django后台主页的样子。</p>
+<p>默认情况下， 它以字母序显示<code>INSTALLED_APPS</code>中所有在管理员应用中注册的应用。 你可能希望能够对整体页面布局做一个大的调整。 毕竟后台主页是整个后台系统最重要的页面， 它应当做到尽可能的易用。</p>
+<p>被提供来自定义的模板是 admin/index.html （做你之前对base_site.html相同的事——把它从默认文件夹拷出来， 然后再做修改）。 修改这个文件， 你会看见它使用了一个模板变量叫做<code>app_list</code>。 这个变量包含了所有安装的Django应用。  你也可以不使用这个默认的变量， 反而直接引用一个确定的应用的管理界面。  再说一遍， 不用担心你现在不能理解模板语言， 我们将会在第三章中仔细介绍的。</p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/29/译-创建你的第一个Django应用-第三部分/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [译]创建你的第一个Django应用 - 第三部分
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/29/译-创建你的第一个Django应用-第一部分/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[译]创建你的第一个Django应用 - 第一部分</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/YorkHe" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2016 York He 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/YorkHe" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

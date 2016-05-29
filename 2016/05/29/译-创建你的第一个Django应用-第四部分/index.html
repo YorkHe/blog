@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[译]创建你的第一个Django应用 - 第四部分 | 42 Answers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这章教程承接第三章结束的地方， 我们将继续那个网络民调应用， 并且将关注与简单的表单处理与精简我们的代码。
+##创造一个简单的表单
+让我们来升级一下上个教程中创建的问题详细内容模板(polls/detail.html)， 让它包含一个HTML的&amp;lt;form&amp;gt;元素:
+12345678910111213&amp;lt;!--polls/templates/polls/detail.html--&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]创建你的第一个Django应用 - 第四部分">
+<meta property="og:url" content="http://blog.york42.com/2016/05/29/译-创建你的第一个Django应用-第四部分/index.html">
+<meta property="og:site_name" content="42 Answers">
+<meta property="og:description" content="这章教程承接第三章结束的地方， 我们将继续那个网络民调应用， 并且将关注与简单的表单处理与精简我们的代码。
+##创造一个简单的表单
+让我们来升级一下上个教程中创建的问题详细内容模板(polls/detail.html)， 让它包含一个HTML的&amp;lt;form&amp;gt;元素:
+12345678910111213&amp;lt;!--polls/templates/polls/detail.html--&amp;gt">
+<meta property="og:updated_time" content="2016-05-29T16:08:12.970Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]创建你的第一个Django应用 - 第四部分">
+<meta name="twitter:description" content="这章教程承接第三章结束的地方， 我们将继续那个网络民调应用， 并且将关注与简单的表单处理与精简我们的代码。
+##创造一个简单的表单
+让我们来升级一下上个教程中创建的问题详细内容模板(polls/detail.html)， 让它包含一个HTML的&amp;lt;form&amp;gt;元素:
+12345678910111213&amp;lt;!--polls/templates/polls/detail.html--&amp;gt">
+  
+    <link rel="alternative" href="/atom.xml" title="42 Answers" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-译-创建你的第一个Django应用-第四部分" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [译]创建你的第一个Django应用 - 第四部分
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/29/译-创建你的第一个Django应用-第四部分/" class="article-date">
+  <time datetime="2016-05-29T15:56:19.000Z" itemprop="datePublished">2016-05-29</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这章教程承接第三章结束的地方， 我们将继续那个网络民调应用， 并且将关注与简单的表单处理与精简我们的代码。</p>
+<p>##创造一个简单的表单</p>
+<p>让我们来升级一下上个教程中创建的问题详细内容模板(<code>polls/detail.html</code>)， 让它包含一个HTML的<code>&lt;form&gt;</code>元素:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--polls/templates/polls/detail.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123; question.question_text &#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % if error_message % &#125;<span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123; &#123; error_message &#125; &#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span>&#123; % endif % &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"&#123; % url 'polls:vote' question.id % &#125;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123; % csrf_token % &#125;</span><br><span class="line">&#123; % for choice in question.choice_set.all % &#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"choice"</span> <span class="attr">id</span>=<span class="string">"choice&#123; &#123; forloop.counter &#125; &#125;"</span> <span class="attr">value</span>=<span class="string">"&#123; &#123; choice.id &#125; &#125;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"choice&#123; &#123; forloop.counter &#125; &#125;"</span>&gt;</span>&#123; &#123; choice.choice_text &#125; &#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Vote"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>快速浏览一下上面的代码：</p>
+<ul>
+<li><p>上面的这个模板给每一个选项显示了一个单选按钮。 每一个单选按钮的值与每一个选项的<code>id</code>相联系。 每一个单选按钮的名字都是<code>choice</code>. 这意味着， 当某人选择了这些单选按钮之一然后提交这个页面的时候， 系统会使用POST传递一个数据<code>choice=#</code>, 此处的<code>#</code>，代表选中选项的id。 这是HTML表单的基本概念。</p>
+</li>
+<li><p>我们把这个表单的动作属性设置为<code>{ %url &#39;polls:vote&#39; question.id% }</code>， 然后我们设置动作方法为<code>post</code>。 此处使用<code>method=&#39;post&#39;</code>（与之相对的是<code>method=&#39;get&#39;</code>）十分重要， 因为此处提交表单的这个动作将会出发服务器端的数据操作。 只要当你创建一个需要服务器端数据操作的表单的时候， 使用<code>post</code>总是最佳选择。 这个建议并不仅仅真对于Django， 这是Web开发的实际经验。</p>
+</li>
+<li><p><code>forloop.counter</code>记录了<code>for</code>标签内循环的次数。</p>
+</li>
+<li><p>既然我们创建了一个<code>POST</code>表单（拥有着操作数据的功能），我们就需要担心一下跨站请求伪造(Cross Site Request Forgeries)的问题。 但是谢天谢地，你并不需要太过于担心这个， 因为Django创造了一个非常易用的系统来避免这个问题。 简而言之， 所有使用<code>POST</code>提交，并且目标是一个内链URL的表单， 都需要有一个<code>{ % CSRF token % }</code>标签。</p>
+</li>
+</ul>
+<p>现在， 让我们来创建一个能够处理提交的数据的Django视图吧。 别忘了， 在第三章教程中， 我们为这个民调应用创建了一个URL设置， 包含着如下代码：</p>
+<pre><code>url(r&apos;^(?P&lt;question_id&gt;\d+)/vote/$&apos;, views.vote, name=&apos;vote&apos;)
+</code></pre><p>我们之前也为vote视图创造了一个简单版本， 现在让我们来写一个完整版的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect, HttpResponse</span><br><span class="line"><span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</span><br><span class="line"></span><br><span class="line">form polls.models <span class="keyword">import</span> Choice, Question</span><br><span class="line"><span class="comment">#...</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	p = get_object_or_404(Question, pk=question_id)</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		selected_choice = p.choice_set.get(pk = request.POST[<span class="string">'choice'</span>])</span><br><span class="line">	<span class="keyword">except</span> (KeyError, Choice.DoesNotExist):</span><br><span class="line">		<span class="comment">#重新显示问题投票表单</span></span><br><span class="line">		<span class="keyword">return</span> render(request, <span class="string">'polls/detail.html'</span>, &#123;</span><br><span class="line">		<span class="string">'question'</span>: p,</span><br><span class="line">		<span class="string">'error_message'</span>: <span class="string">"You didn't select a choice."</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		selected_choice.votes += <span class="number">1</span></span><br><span class="line">		selected_choice.save()</span><br><span class="line">		<span class="comment">#当成功提交一个POST数据之后， 要记得返回一个</span></span><br><span class="line">		<span class="comment">#HttpResponseRedirect， 不然当用户点击后退</span></span><br><span class="line">		<span class="comment">#按钮的时候， 同样的数据会被提交多次。</span></span><br><span class="line">		<span class="keyword">return</span> HttpResponseRedirect(reverse(<span class="string">'polls:results'</span>, args=(p.id, )))</span><br></pre></td></tr></table></figure>
+<p>以上的代码包含一些我们之前没有提过的东西：</p>
+<ul>
+<li><p><code>request.POST</code>是一个字典型对象。 它允许你通过键值对来访问POST传递的数据。 在上文的代码中， <code>request.POST[&#39;choice&#39;]</code>以字符串的形式，返回了选中的选项的ID。 <code>request.POST</code>的值总是以字符串表示的。</p>
+<p>  Django同样提供<code>request.GET</code>来以同样的方式访问<code>GET</code>数据。 在我们的代码中，我们只使用<code>request.POST</code>， 来确保数据只由<code>POST</code>请求来操作。</p>
+</li>
+<li>若<code>choice</code>没有提供一个POST数据的话，<code>request.POST[&#39;choice&#39;]</code>会引发一个<code>KeyError</code>错误。 上面的代码检查了<code>KeyError</code>错误发生的可能性， 并在choice没有提供POST数据的时候重新显示表单页面，并且返回一个错误信息。</li>
+<li><p>在添加了投票统计之后， 代码返回了一个<code>HttpResponseRedirect</code>而非一个普通的<code>HttpResponse</code>。 <code>HttpResponseRedirect</code>只需要一个参数： 被重定向的目标URL。 </p>
+<p>  正如代码中的注释提到的那样， 你应当总是返回一个<code>HttpResponseRedirect</code>， 这不仅仅是对于Django而言。 这是一个优秀的编程实践经验。</p>
+</li>
+<li><p>我们在本例的<code>HttpResponseRedirect</code>构造器中使用了一个<code>reverse()</code>函数。 这个函数帮助我们避免了在视图函数中硬编码写入一个URL。 给定我们想要传递到的那个视图的名字与这个URL模式所需的参数，在这个例子中， 使用我们在第三章教程中创建的URL设置， 这个<code>reverse()</code>函数会返回如下字符串：</p>
+<pre><code>&apos;/polls/3/results/&apos;
+</code></pre><p>  这里的3是<code>p.id</code>的值。 这个重定向的URL会调用<code>result</code>视图来显示最终的页面。</p>
+</li>
+</ul>
+<p>正如我们在第三章教程中提到的那样， <code>request</code>是一个<code>HttpRequest</code>对象。 </p>
+<p>在某人为某个问题投票之后， <code>vote()</code>视图重定向到这个问题的最终视图中， 它的视图代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from django.shortcuts import get_object_or_404, render</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def results(request, question_id):</span><br><span class="line">	question = get_object_or_404(Question, pk=question_id)</span><br><span class="line">	return render(request, &apos;polls/results.html&apos;,&#123;&apos;question&apos;:question&#125;)</span><br></pre></td></tr></table></figure>
+<p>它与我们在第三章写的<code>detail</code>视图几乎完全一样， 仅有的不同之处在于模板的名字。 我们将会在稍后修改这处冗余。</p>
+<p>现在， 创建一个<code>polls/results.html</code>模板</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--polls/templates/polls/results.html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123; &#123; question.question_text &#125; &#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">&#123; % for choice in question.choice_set.all % &#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123; &#123; choice.choice_text &#125; &#125; -- &#123; &#123; choice.votes &#125; &#125; vote&#123; &#123; choice.votes|pluralize &#125; &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123; % endfor % &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'polls:detail' question.id % &#125;"</span>&gt;</span>Vote again?<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在在你的浏览器中访问<code>/polls/1</code>来为这个问题投票。 你将见到一个随着你每次投票都有变化的结果页面。 如果你没有选择一个选项就提交了的话， 你还将见到一个错误页面。</p>
+<p>##使用基础视图： 代码越少越好</p>
+<p>之前的<code>detail()</code>与<code>result()</code>视图都极其简单， 以及， 像之前提过的那样—— 冗赘。 而那个显示着问题列表的<code>index()</code>视图， 也是一样。</p>
+<p>这些视图体现着网页开发的一个基本模式：根据URL中传递的一个参数来从数据库中获取数据， 读取一个模板然后返回渲染之后的页面。 因为这实在是太平常了， Django提供了一个快捷表示， 叫做基础视图(generic views)（或者叫泛型视图）.</p>
+<p>基础视图将程序抽象表示， 以至于你甚至不需要书写Python代码就能够创建一个应用。</p>
+<p>然我们把民调应用转化成使用基础视图系统， 所以我们就可以删去一大堆无用的代码。 我们只需做一下这几步就可以完成转化：</p>
+<ul>
+<li>改变URL设置</li>
+<li>删除一些旧的，不需要的视图</li>
+<li>引入基于基础视图系统的新的视图</li>
+</ul>
+<p>###修改URL设置</p>
+<p>首先， 打开<code>polls/urls.py</code>, 并作如下修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/urls.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> patterns, url</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = patterns(<span class="string">''</span>,</span><br><span class="line">	url(<span class="string">r'^$'</span>,views.IndexView.as_view(), name =<span class="string">'index'</span>),</span><br><span class="line">	url(<span class="string">r'^(?P&lt;pk&gt;\d+)/$'</span>, views.DetailView.as_view(), name=<span class="string">'detail'</span>),</span><br><span class="line">	url(<span class="string">r'^(?P&lt;pk&gt;\d+)/results/$'</span>, views.ResultsView.as_view(), name=<span class="string">'results'</span>),</span><br><span class="line">    url(<span class="string">r'^(?P&lt;question_id&gt;\d+)/vote/$'</span>, views.vote, name=<span class="string">'vote'</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>注意第二个和第三个正则表达式匹配参数名已经从<code>&lt;question_id&gt;</code>变成了<code>&lt;pk&gt;</code></p>
+<p>###修改视图</p>
+<p>接下来， 我们要对旧的<code>index</code>, <code>detail</code>和<code>result</code>视图做一些修改， 并且使用之前提到的Django的基础视图。 打开<code>polls/views.py</code>， 并作如下修改。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#polls/views.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponseRedirect</span><br><span class="line"><span class="keyword">from</span> django.core.urlresolvers <span class="keyword">import</span> reverse</span><br><span class="line"><span class="keyword">from</span> django.views <span class="keyword">import</span> generic</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> polls.models <span class="keyword">import</span> Choice, Question</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IndexView</span><span class="params">(generic.ListView)</span>:</span></span><br><span class="line">	template_name = <span class="string">'polls/index.html'</span></span><br><span class="line">	context_object_name = <span class="string">'latest_question_list'</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> Question.objects.order_by(<span class="string">'-pub_date'</span>)[:<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DetailView</span><span class="params">(generic.DetailView)</span>:</span></span><br><span class="line">	model = Question</span><br><span class="line">	template_name = <span class="string">'polls/detail.html'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResultsView</span><span class="params">(generic.DetailView)</span>:</span></span><br><span class="line">	model = Question</span><br><span class="line">	template_name = <span class="string">'polls/result.html'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">	...<span class="comment">#与之前相同</span></span><br></pre></td></tr></table></figure>
+<p>我们使用了两个基础视图： <code>ListView</code>与<code>DetailView</code>。 这两个视图分别抽象了“显示一列对象”和“显示某个特定对象的详细内容”两个概念。</p>
+<ul>
+<li>每一个抽象视图都需要直到它所作用的数据模型。 这个信息由<code>model</code>属性传递</li>
+<li><code>DetailView</code>基础视图需要由URL中匹配得到被称为<code>pk</code>的主键键值， 所以我们在URL设置中把<code>question_id</code>改名作<code>pk</code></li>
+</ul>
+<p>默认情况下， <code>DetailView</code>基础视图使用叫做<code>&lt;app name&gt;/&lt;model name&gt;_detail.html</code>的模板。 在本例中， 它使用的是<code>polls/question_detail.html</code>。 这里的<code>template_name</code>属性被用来告诉Django去使用一个特定的模板名称， 而非Django自动默认的模板。 我们还为<code>result</code>视图指定了一个模板名称 - 这确保了<code>result</code>视图和<code>detail</code>视图在渲染时会有不同的显示， 尽管他们都是基于<code>DetailView</code>。</p>
+<p>同样的， <code>ListView</code>使用默认的<code>&lt;app name&gt;/&lt;model name&gt;_list.html</code> 我们使用<code>template_name</code>来告诉<code>ListView</code>使用我们存在的<code>polls/index.html</code>模板</p>
+<p>在之前的教程中， 我们将一个包含着<code>question</code>和<code>latest_question_list</code>的内容对象传递到模板中。 对于<code>DetailView</code>来说， 这些信息都是自动传递的。 因为我们使用了一个Django的视图。 Django能够自己为这个内容决定一个合适的名字。 但是， 对于<code>ListView</code>,自动生成的内容变量是<code>question_list</code>。 为了覆盖这个， 我们提供了<code>context_object_name</code>属性， 特殊指定了我们想要替代性地使用<code>latest_question_list</code>。 作为一个可选的方法， 你应该更改你的模板来匹配新的默认内容变量 - 但是让Django使用你想要的变量会更简单。</p>
+<p>运行服务器，你就会看见基于基础视图的全新的民意调查应用。</p>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/29/译-创建你的第一个Django应用-第三部分/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[译]创建你的第一个Django应用 - 第三部分</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/YorkHe" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2016 York He 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/YorkHe" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
