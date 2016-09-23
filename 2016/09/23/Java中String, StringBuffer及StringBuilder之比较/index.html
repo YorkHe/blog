@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>42 Answers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="String, StringBuffer, StringBuilder�Ƚ�
+����: ����
+ѧ��: 3140105594
+
+String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
+<meta property="og:type" content="article">
+<meta property="og:title" content="42 Answers">
+<meta property="og:url" content="http://blog.york42.com/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/index.html">
+<meta property="og:site_name" content="42 Answers">
+<meta property="og:description" content="String, StringBuffer, StringBuilder�Ƚ�
+����: ����
+ѧ��: 3140105594
+
+String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
+<meta property="og:updated_time" content="2016-09-23T06:29:32.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="42 Answers">
+<meta name="twitter:description" content="String, StringBuffer, StringBuilder�Ƚ�
+����: ����
+ѧ��: 3140105594
+
+String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
+  
+    <link rel="alternative" href="/atom.xml" title="42 Answers" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-Java中String, StringBuffer及StringBuilder之比较" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+    <div class="article-meta">
+      <a href="/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/" class="article-date">
+  <time datetime="2016-09-23T06:29:31.835Z" itemprop="datePublished">2016-09-23</time>
+</a>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="String-StringBuffer-StringBuilder�L�"><a href="#String-StringBuffer-StringBuilder�L�" class="headerlink" title="String, StringBuffer, StringBuilder�Ƚ�"></a>String, StringBuffer, StringBuilder�Ƚ�</h1><blockquote>
+<p>����: ����</p>
+<p>ѧ��: 3140105594</p>
+</blockquote>
+<h2 id="String-��"><a href="#String-��" class="headerlink" title="String ��"></a>String ��</h2><p>String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ���������ͬ���ַ������������ԣ� ����ָ������ͬһ���ַ���������</p>
+<p>����String�������������࣬ �������������ԣ�</p>
+<ul>
+<li>String����Java��Ψһ�ľ����������������ࡣ String������+�������� ʹ�ö���һ���Ӻ��������ߵ�String�ܹ�������������</li>
+</ul>
+<h3 id="��Ա����"><a href="#��Ա����" class="headerlink" title="��Ա����"></a>��Ա����</h3><p>String���������µĹؼ���Ա������</p>
+<p><code>final char[] value</code></p>
+<p>�洢���������ַ������ַ����顣 ��Ϊ��final������ �������౻����֮���ǲ����޸ĵġ�</p>
+<p><code>final int count</code></p>
+<p>�洢��value[]�����е��ַ������� �ڴ�������������value.length�е�ֵ��ͬ��</p>
+<p><code>final int offset</code></p>
+<p>�洢��value[]�������ַ�����ʼλ�á� �˱����Ĵ���Ŀ����Ϊ��substring()�����ṩ����</p>
+<h3 id="˽����"><a href="#˽����" class="headerlink" title="˽����"></a>˽����</h3><p><code>private static final class CaseInsensitiveComparator</code></p>
+<p>String��˽���࣬ ������compare()������ �����ṩ�����ַ���֮���Ĵ�Сд�����еıȽϡ�</p>
+<h3 id="������"><a href="#������" class="headerlink" title="������"></a>������</h3><p><code>public String ()</code></p>
+<p>Ĭ�Ϲ������� ����һ���յ��ַ����� ����valueΪ<code>&quot;&quot;</code>��offsetΪ0��countΪ0��</p>
+<p><code>public String (String str)</code></p>
+<p>������������ ���ݴ����Ĳ���str���½�һ���µ��ַ���ʵ�����������ַ����ǲ��ɱ��ģ� ���Կ�������ǳ�����ķ�ʽִ�еġ�</p>
+<p><code>public String (char[] data)</code></p>
+<p>���ݴ�����data�ַ����飬 ��ʼ��һ���µ��ַ���ʵ����</p>
+<p><code>public String (char[] data, int offset, int count)</code></p>
+<p>���ݴ�����data�ַ�����, offsetƫ������count���ݣ� ����ʼ��һ���µ��ַ���ʵ����</p>
+<p><code>public String (byte[] ascii, int hibyte, int offset, int count)</code></p>
+<p>ʹ�ö����Ƶķ�ʽ��ʼ��һ���ַ����� ����ascii�����д���ÿһ���ַ���ascii�롣 ��������ÿһλ��ֵ<code>c = (char)(((hibyte &amp; 0xff) &lt;&lt; 8) | (b &amp; 0xff))</code></p>
+<p>����hibyte���������ַ������߰�λ���Լ���ascii������ֵ�����Ͱ�λ��</p>
+<p><code>public String (byte[] ascii, int hibyte)</code></p>
+<p>ʹ��<code>String (byte[] ascii, int hibyte, int offset, int count)</code> ��Ϊ Delegate Constructor, Ĭ��offsetΪ0, countΪascii.length</p>
+<p><code>public String (byte[] data, int offset, String encoding)</code></p>
+<p>ʹ��encoding�������涨�ķ�ʽ��������data���鴫�����ַ��� �������½�һ���ַ�����</p>
+<p><code>public String (StringBuffer buffer)</code></p>
+<p>ʹ��StringBuffer�д洢���ַ����й���һ���µ��ַ�����StringBuffer���ַ��ĸĶ�������Ӱ��ͨ���˹������������ַ�����</p>
+<p><code>public String (StringBuilder buffer)</code></p>
+<p>ʹ��StringBuilder�е��ַ����й���һ���µ��ַ����� StringBuilder���ַ��ĸĶ�������Ӱ��ͨ���˹������������ַ�����</p>
+<h2 id="StringBuffer-��"><a href="#StringBuffer-��" class="headerlink" title="StringBuffer ��"></a>StringBuffer ��</h2><p>StringBuffer����ʾһ�� <em>�ɱ���(changeable)</em> �ַ����� ���ṩ��һϵ�г�Ա��������StringBufferʵ�������޸ģ� ����<code>insert</code>, <code>replace</code>, <code>delete</code>, <code>append</code>��<code>reverse</code>�ȡ�</p>
+<p>StringBufferʵ���Ǳ䳤�ģ� ���Ծ����ڶ���ʱ�� �������Թ̶����ȶ����ģ� �����ĳ��ȶ����Խ��в���������</p>
+<p>����ĳ���ض���ԭ���� ������һ��ʹ��StringBuffer������+����������String���͵����㡣 ������ʽ<code>str_a+str_b</code>, �ȼ���<br><code>new StringBuffer().append(str_a).append(str_b).toString()</code></p>
+<h3 id="��Ա����-1"><a href="#��Ա����-1" class="headerlink" title="��Ա����"></a>��Ա����</h3><p>StringBuffer��ӵ�����µĹؼ���Ա����:</p>
+<p><code>int count</code></p>
+<p>��һ������bufferλ�õ������� ͬʱҲ�ǵ�ǰ�ַ������ݵĴ�С�� ע���˴�count��publicȨ�ޣ� ���������Դ��ⲿ���ʸñ�����</p>
+<p><code>char[] value</code></p>
+<p>�洢StringBuffer�е��ַ���Buffer������</p>
+<p><code>boolean shared</code></p>
+<p>����Buffer�Ƿ����������������� ����Ϊ�棬 ���ڶ��ַ�������д����ʱ�� ��Ҫ�Ƚ��临��һ�ݡ�</p>
+<h3 id="������-1"><a href="#������-1" class="headerlink" title="������"></a>������</h3><p><code>public StringBuffer()</code></p>
+<p>Ĭ�Ϲ������� ��Ĭ�������£� �ṹ��һ����<code>DEFAULT_CAPACITY</code>Ϊ��С��StringBuffer����JDK1.2�У� ����ֵΪ16.</p>
+<p><code>public StringBuffer(int capacity)</code></p>
+<p>�������������½�һ����СΪ<code>capacity</code>��<code>char</code>���飬 ���ҽ�����Ϊ��Ա����<code>value</code>�ĵ�ǰֵ��</p>
+<p><code>public StringBuffer(String str)</code></p>
+<p>��������������һ��String������������ֵ����<code>count</code>��<code>value</code>����Ҫע�����ǣ�ͨ���˹������õ����ַ���Buffer�Ĵ�С��ԭ�ַ����Ĵ�С����<code>DEFAULT_CAPACITY</code>�������ַ����Ĵ�С(<code>length</code>)��Ȼ��ԭ�ַ���</p>
+<h2 id="StringBuilder��"><a href="#StringBuilder��" class="headerlink" title="StringBuilder��"></a>StringBuilder��</h2><p>StringBuilder����ʾһ�� <em>�ɱ���(changeable)</em> �ַ����� ��StringBuffer���ƣ� ��Ҳ�ṩ������<code>insert</code>,<code>replace</code>,<code>delete</code>, <code>append</code>, <code>reverse</code>֮���ķ����� ������StringBuilder��ͬ���ǣ�StringBuilder�ǲ�ͬ���ģ� ֻ����һ���̵߳�������ʹ�á�</p>
+<h3 id="�ؼ���Ա����"><a href="#�ؼ���Ա����" class="headerlink" title="�ؼ���Ա����"></a>�ؼ���Ա����</h3><p><code>int count</code></p>
+<p>��һ������bufferλ�õ������� ͬʱҲ�ǵ�ǰ�ַ������ݵĴ�С��</p>
+<p><code>char[] value</code></p>
+<p>�洢StringBuilder�е��ַ���Buffer������</p>
+<h3 id="������-2"><a href="#������-2" class="headerlink" title="������"></a>������</h3><p><code>public StringBuilder()</code></p>
+<p>Ĭ�Ϲ������� ��������һ����<code>DEFAULT_CAPACITY</code>Ϊ��С��StringBuilder</p>
+<p><code>public StringBuilder(int capacity)</code></p>
+<p>�������������½�һ����СΪ<code>capacity</code>��char���飬 ���ҽ�����Ϊ����<code>value</code>�ĵ�ǰֵ��</p>
+<p><code>public StringBuilder(String str)</code></p>
+<p>���������������ݴ�����String������������ֵ����<code>count</code>��<code>value</code>�� StringBuilderͨ���˹������õ���ʵ��������StringBufferһ���� value�����Ĵ�С������һ��<code>DEFAULT_CAPACITY</code>��</p>
+<p><code>public StringBuilder(CharSequence seq)</code></p>
+<p>���ݴ�����CharSequence������ �½�һ��StringBuilderʵ���� ��Сͬ������һ��<code>DEFAULT_CAPACITY</code>�Ŀ��ࡣ</p>
+<h2 id="�L���ͬ"><a href="#�L���ͬ" class="headerlink" title="�Ƚ���ͬ"></a>�Ƚ���ͬ</h2><h3 id="String�루StringBuffer��StringBuilder�����бL�"><a href="#String�루StringBuffer��StringBuilder�����бL�" class="headerlink" title="String�루StringBuffer��StringBuilder�����бȽ�"></a>String�루StringBuffer��StringBuilder�����бȽ�</h3><p>��ͬ�㣺</p>
+<ol>
+<li>����ʾ��һ���ַ�������</li>
+<li>����final�࣬ �����������̳�</li>
+<li>�����ַ������ж���֧��Unicode��</li>
+<li>��֧�ֶ����ַ����������ݵĲ��ֶ�ȡ</li>
+<li>�������˼Ӻ��������� �ܹ�ֱ��ʹ��”+”�����������ַ���</li>
+</ol>
+<p>��ͬ�㣺</p>
+<ol>
+<li>String���͵��ַ����� <em>���ɱ䣨immutable��</em> �ģ� ��һ��Stringʵ���ڱ�����֮���� ���ַ����Ĵ�С�� ���ݲ����ٱ��ı䡣 ������Ҫ���иı��Ļ��� ʵ�������½���һ��Stringʵ����</li>
+<li>������StringBuffer��StringBuilder���ԣ� �䱾����ʵ����һ���䳤����(VLA)���������ַ�����С�����ݶ��ǿ��Խ��б仯�ġ��ڽ����޸ĵ�ʱ���� StringBuffer��StringBuilder����ʵ����һ��<code>public void ensureCapacity(int minimumCapacity)</code>�ķ����� ��ȷ��ʱ��Buffer�����Ĵ�СҪ����<code>minimumCapacity</code>, �����ͽ�������������ԭ��size�������ټӶ���</li>
+<li>String���Ͷ����ַ��������Ĳ������࣬����<code>toLowerCase</code>, <code>toUpperCase</code>������Сдת���ķ����� �Լ�<code>matches</code>, <code>split</code>,<code>replace</code>������������ʽ������ �Լ�<code>trim</code>��<code>concat</code>���������ַ����ķ�����������String����ʵ�֣�����StringBuffer��StringBuilder���в�û���ṩ���Ͻӿڡ�</li>
+</ol>
+<h3 id="StringBuffer-��-StringBuilder���бL�"><a href="#StringBuffer-��-StringBuilder���бL�" class="headerlink" title="StringBuffer �� StringBuilder���бȽ�"></a>StringBuffer �� StringBuilder���бȽ�</h3><p>��ͬ�㣺</p>
+<ol>
+<li>ǰ����String���͹��е���ͬ�㲻׸��</li>
+<li>StringBuffer����StringBuilder�඼ʵ����һ�� <em>�ɱ���(changeable)</em> �ַ��������� ����ͨ��һϵ�з������ַ������ݽ����������ӣ�ɾ�������룬�滻����ת�Ȳ�����</li>
+<li>ʵ�ֵ��ַ���buffer�ı��ʶ���һ���䳤����(VLA)�� ���κ�ʱ�̶�������֤���鲻Խ�磬 �����ӽ������߽磬 �ͽ������Ĵ�С������ԭ����С�������Ӷ���</li>
+<li>Ĭ�ϵ�buffer��С<code>DEFAULT_CAPACITY</code>��Ϊ16</li>
+</ol>
+<p>��ͬ�㣺</p>
+<ol>
+<li>StringBuilder������StringBuffer, ����һ������CharSequence�����Ĺ�������</li>
+<li>StringBuffer��StringBuilder������һ��<code>shared</code>ָʾ���Ա���buffer�����Ƿ񱻶������������á��������������õĻ����ڽ��в�����ʱ����Ҫ������buffer�ٸ���һ�ݣ� �Ա�֤�䵥���õ����ʡ� ��һ����ʵ��Ϊ�˱�֤�������ݵ�ͬ�������еġ�</li>
+<li>����֮ǰ��˵�� StringBuffer��StringBuilder��������ͬ��������������ͬ���ԡ� StringBuffer������������Ա����ǰ��������<code>synchronized</code>�ؼ��֣� �Ա�֤���̰߳�ȫ�� Ҳ����˵�� ��ͬһʱ�䣬 ֻ��һ���߳��ܹ���ͬһ��StringBuffer�������в������������Ʊ������߳�֮����д�ĳ�ͻ�� ������StringBuilder��˵�� ��û����һ�����ơ������п��ܻ������߳�֮���ĳ�ͻ�� ������һ���Ƕȶ��ԣ� Ҳ�����������߳���֮���Ŀ��ܵ�ϵͳ������ ������StringBuffer���ԣ� StringBuilder���ٶȿ��ܻ�����һЩ�� ��������ҪȨ��ʹ�á�</li>
+</ol>
+
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/29/译-创建你的第一个Django应用-第四部分/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[译]创建你的第一个Django应用 - 第四部分</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/YorkHe" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
+      </div>
+      <footer id="footer">
+  
+	<div id="footer-info" class="inner">
+	  &copy; 2016 York He 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/Alex-fun/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/YorkHe" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
+
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
