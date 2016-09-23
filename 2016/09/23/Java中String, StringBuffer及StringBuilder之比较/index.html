@@ -3,30 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>42 Answers</title>
+  <title>String, StringBuffer, StringBuilder比较 | 42 Answers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="String, StringBuffer, StringBuilder�Ƚ�
-����: ����
-ѧ��: 3140105594
+  <meta name="description" content="String 类String 类表示一个字符串。 在设计上， 字符串类存储的字符串是不可变的(immutable)。想要修改一个字符串的内容只能通过新建一个新的字符串实例来实现。 且对于两个相同的字符串字面量而言， 他们指向的是同一个字符串对象。
+并且String类相对于其他类， 具有以下特殊性：
 
-String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
+String类是Java中唯一的具有重载运算符的类。 String重载了+运算符， 使得对于一个加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="42 Answers">
+<meta property="og:title" content="String, StringBuffer, StringBuilder比较">
 <meta property="og:url" content="http://blog.york42.com/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/index.html">
 <meta property="og:site_name" content="42 Answers">
-<meta property="og:description" content="String, StringBuffer, StringBuilder�Ƚ�
-����: ����
-ѧ��: 3140105594
+<meta property="og:description" content="String 类String 类表示一个字符串。 在设计上， 字符串类存储的字符串是不可变的(immutable)。想要修改一个字符串的内容只能通过新建一个新的字符串实例来实现。 且对于两个相同的字符串字面量而言， 他们指向的是同一个字符串对象。
+并且String类相对于其他类， 具有以下特殊性：
 
-String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
-<meta property="og:updated_time" content="2016-09-23T06:29:32.030Z">
+String类是Java中唯一的具有重载运算符的类。 String重载了+运算符， 使得对于一个加">
+<meta property="og:updated_time" content="2016-09-23T06:55:53.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="42 Answers">
-<meta name="twitter:description" content="String, StringBuffer, StringBuilder�Ƚ�
-����: ����
-ѧ��: 3140105594
+<meta name="twitter:title" content="String, StringBuffer, StringBuilder比较">
+<meta name="twitter:description" content="String 类String 类表示一个字符串。 在设计上， 字符串类存储的字符串是不可变的(immutable)。想要修改一个字符串的内容只能通过新建一个新的字符串实例来实现。 且对于两个相同的字符串字面量而言， 他们指向的是同一个字符串对象。
+并且String类相对于其他类， 具有以下特殊性：
 
-String ��String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ��">
+String类是Java中唯一的具有重载运算符的类。 String重载了+运算符， 使得对于一个加">
   
     <link rel="alternative" href="/atom.xml" title="42 Answers" type="application/atom+xml">
   
@@ -46,106 +43,112 @@ String ��String ����ʾһ���ַ����� ������
   
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      String, StringBuffer, StringBuilder比较
+    </h1>
+  
+
+      </header>
+    
     <div class="article-meta">
       <a href="/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/" class="article-date">
-  <time datetime="2016-09-23T06:29:31.835Z" itemprop="datePublished">2016-09-23</time>
+  <time datetime="2016-09-23T06:49:40.000Z" itemprop="datePublished">2016-09-23</time>
 </a>
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="String-StringBuffer-StringBuilder�L�"><a href="#String-StringBuffer-StringBuilder�L�" class="headerlink" title="String, StringBuffer, StringBuilder�Ƚ�"></a>String, StringBuffer, StringBuilder�Ƚ�</h1><blockquote>
-<p>����: ����</p>
-<p>ѧ��: 3140105594</p>
-</blockquote>
-<h2 id="String-��"><a href="#String-��" class="headerlink" title="String ��"></a>String ��</h2><p>String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ���������ͬ���ַ������������ԣ� ����ָ������ͬһ���ַ���������</p>
-<p>����String�������������࣬ �������������ԣ�</p>
+        <h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>String 类表示一个字符串。 在设计上， 字符串类存储的字符串是不可变的(immutable)。想要修改一个字符串的内容只能通过新建一个新的字符串实例来实现。 且对于两个相同的字符串字面量而言， 他们指向的是同一个字符串对象。</p>
+<p>并且String类相对于其他类， 具有以下特殊性：</p>
 <ul>
-<li>String����Java��Ψһ�ľ����������������ࡣ String������+�������� ʹ�ö���һ���Ӻ��������ߵ�String�ܹ�������������</li>
+<li>String类是Java中唯一的具有重载运算符的类。 String重载了+运算符， 使得对于一个加号左右两边的String能够被连接起来。</li>
 </ul>
-<h3 id="��Ա����"><a href="#��Ա����" class="headerlink" title="��Ա����"></a>��Ա����</h3><p>String���������µĹؼ���Ա������</p>
+<h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>String类具有以下的关键成员变量：</p>
 <p><code>final char[] value</code></p>
-<p>�洢���������ַ������ַ����顣 ��Ϊ��final������ �������౻����֮���ǲ����޸ĵġ�</p>
+<p>存储组成这个字符串的字符数组。 因为是final声明， 所以在类被创建之后是不可修改的。</p>
 <p><code>final int count</code></p>
-<p>�洢��value[]�����е��ַ������� �ڴ�������������value.length�е�ֵ��ͬ��</p>
+<p>存储在value[]数组中的字符个数， 在大多数情况下与value.length中的值相同。</p>
 <p><code>final int offset</code></p>
-<p>�洢��value[]�������ַ�����ʼλ�á� �˱����Ĵ���Ŀ����Ϊ��substring()�����ṩ����</p>
-<h3 id="˽����"><a href="#˽����" class="headerlink" title="˽����"></a>˽����</h3><p><code>private static final class CaseInsensitiveComparator</code></p>
-<p>String��˽���࣬ ������compare()������ �����ṩ�����ַ���֮���Ĵ�Сд�����еıȽϡ�</p>
-<h3 id="������"><a href="#������" class="headerlink" title="������"></a>������</h3><p><code>public String ()</code></p>
-<p>Ĭ�Ϲ������� ����һ���յ��ַ����� ����valueΪ<code>&quot;&quot;</code>��offsetΪ0��countΪ0��</p>
+<p>存储在value[]数组中字符的起始位置。 此变量的创建目的是为了substring()方法提供便利</p>
+<h3 id="私有类"><a href="#私有类" class="headerlink" title="私有类"></a>私有类</h3><p><code>private static final class CaseInsensitiveComparator</code></p>
+<p>String类私有类， 其具有compare()方法， 用于提供对于字符串之间的大小写不敏感的比较。</p>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><p><code>public String ()</code></p>
+<p>默认构造器， 创建一个空的字符串， 设置value为<code>&quot;&quot;</code>，offset为0，count为0。</p>
 <p><code>public String (String str)</code></p>
-<p>������������ ���ݴ����Ĳ���str���½�һ���µ��ַ���ʵ�����������ַ����ǲ��ɱ��ģ� ���Կ�������ǳ�����ķ�ʽִ�еġ�</p>
+<p>拷贝构造器， 根据传入的参数str，新建一个新的字符串实例。但由于字符串是不可变的， 所以拷贝是以浅拷贝的方式执行的。</p>
 <p><code>public String (char[] data)</code></p>
-<p>���ݴ�����data�ַ����飬 ��ʼ��һ���µ��ַ���ʵ����</p>
+<p>根据传入的data字符数组， 初始化一个新的字符串实例。</p>
 <p><code>public String (char[] data, int offset, int count)</code></p>
-<p>���ݴ�����data�ַ�����, offsetƫ������count���ݣ� ����ʼ��һ���µ��ַ���ʵ����</p>
+<p>根据传入的data字符数组, offset偏移量和count数据， 来初始化一个新的字符串实例。</p>
 <p><code>public String (byte[] ascii, int hibyte, int offset, int count)</code></p>
-<p>ʹ�ö����Ƶķ�ʽ��ʼ��һ���ַ����� ����ascii�����д���ÿһ���ַ���ascii�롣 ��������ÿһλ��ֵ<code>c = (char)(((hibyte &amp; 0xff) &lt;&lt; 8) | (b &amp; 0xff))</code></p>
-<p>����hibyte���������ַ������߰�λ���Լ���ascii������ֵ�����Ͱ�λ��</p>
+<p>使用二进制的方式初始化一个字符串， 其中ascii数组中存放每一个字符的ascii码。 并且最终每一位的值<code>c = (char)(((hibyte &amp; 0xff) &lt;&lt; 8) | (b &amp; 0xff))</code></p>
+<p>即用hibyte填充最终字符的最高八位，以及用ascii数组的值填充低八位。</p>
 <p><code>public String (byte[] ascii, int hibyte)</code></p>
-<p>ʹ��<code>String (byte[] ascii, int hibyte, int offset, int count)</code> ��Ϊ Delegate Constructor, Ĭ��offsetΪ0, countΪascii.length</p>
+<p>使用<code>String (byte[] ascii, int hibyte, int offset, int count)</code> 作为 Delegate Constructor, 默认offset为0, count为ascii.length</p>
 <p><code>public String (byte[] data, int offset, String encoding)</code></p>
-<p>ʹ��encoding�������涨�ķ�ʽ��������data���鴫�����ַ��� �������½�һ���ַ�����</p>
+<p>使用encoding参数所规定的方式来解码由data数组传入的字符， 并依此新建一个字符串。</p>
 <p><code>public String (StringBuffer buffer)</code></p>
-<p>ʹ��StringBuffer�д洢���ַ����й���һ���µ��ַ�����StringBuffer���ַ��ĸĶ�������Ӱ��ͨ���˹������������ַ�����</p>
+<p>使用StringBuffer中存储的字符序列构造一个新的字符串。StringBuffer中字符的改动并不会影响通过此构造器构建的字符串。</p>
 <p><code>public String (StringBuilder buffer)</code></p>
-<p>ʹ��StringBuilder�е��ַ����й���һ���µ��ַ����� StringBuilder���ַ��ĸĶ�������Ӱ��ͨ���˹������������ַ�����</p>
-<h2 id="StringBuffer-��"><a href="#StringBuffer-��" class="headerlink" title="StringBuffer ��"></a>StringBuffer ��</h2><p>StringBuffer����ʾһ�� <em>�ɱ���(changeable)</em> �ַ����� ���ṩ��һϵ�г�Ա��������StringBufferʵ�������޸ģ� ����<code>insert</code>, <code>replace</code>, <code>delete</code>, <code>append</code>��<code>reverse</code>�ȡ�</p>
-<p>StringBufferʵ���Ǳ䳤�ģ� ���Ծ����ڶ���ʱ�� �������Թ̶����ȶ����ģ� �����ĳ��ȶ����Խ��в���������</p>
-<p>����ĳ���ض���ԭ���� ������һ��ʹ��StringBuffer������+����������String���͵����㡣 ������ʽ<code>str_a+str_b</code>, �ȼ���<br><code>new StringBuffer().append(str_a).append(str_b).toString()</code></p>
-<h3 id="��Ա����-1"><a href="#��Ա����-1" class="headerlink" title="��Ա����"></a>��Ա����</h3><p>StringBuffer��ӵ�����µĹؼ���Ա����:</p>
+<p>使用StringBuilder中的字符序列构造一个新的字符串， StringBuilder中字符的改动并不会影响通过此构造器构建的字符串。</p>
+<h2 id="StringBuffer-类"><a href="#StringBuffer-类" class="headerlink" title="StringBuffer 类"></a>StringBuffer 类</h2><p>StringBuffer类表示一个 <em>可变的(changeable)</em> 字符串， 它提供了一系列成员方法来对StringBuffer实例进行修改， 包括<code>insert</code>, <code>replace</code>, <code>delete</code>, <code>append</code>和<code>reverse</code>等。</p>
+<p>StringBuffer实例是变长的， 所以尽管在定义时， 可能是以固定长度定义的， 但它的长度都可以进行不断正常。</p>
+<p>出于某种特定的原因， 编译器一般使用StringBuffer来重载+运算符对于String类型的运算。 即表达式<code>str_a+str_b</code>, 等价于<br><code>new StringBuffer().append(str_a).append(str_b).toString()</code></p>
+<h3 id="成员变量-1"><a href="#成员变量-1" class="headerlink" title="成员变量"></a>成员变量</h3><p>StringBuffer类拥有以下的关键成员变量:</p>
 <p><code>int count</code></p>
-<p>��һ������bufferλ�õ������� ͬʱҲ�ǵ�ǰ�ַ������ݵĴ�С�� ע���˴�count��publicȨ�ޣ� ���������Դ��ⲿ���ʸñ�����</p>
+<p>下一个可用buffer位置的索引， 同时也是当前字符串内容的大小。 注意此处count是public权限， 即程序可以从外部访问该变量。</p>
 <p><code>char[] value</code></p>
-<p>�洢StringBuffer�е��ַ���Buffer������</p>
+<p>存储StringBuffer中的字符串Buffer本身。</p>
 <p><code>boolean shared</code></p>
-<p>����Buffer�Ƿ����������������� ����Ϊ�棬 ���ڶ��ַ�������д����ʱ�� ��Ҫ�Ƚ��临��һ�ݡ�</p>
-<h3 id="������-1"><a href="#������-1" class="headerlink" title="������"></a>������</h3><p><code>public StringBuffer()</code></p>
-<p>Ĭ�Ϲ������� ��Ĭ�������£� �ṹ��һ����<code>DEFAULT_CAPACITY</code>Ϊ��С��StringBuffer����JDK1.2�У� ����ֵΪ16.</p>
+<p>标记Buffer是否与其他对象共享， 如果为真， 则在对字符串进行写操作时， 需要先将其复制一份。</p>
+<h3 id="构造器-1"><a href="#构造器-1" class="headerlink" title="构造器"></a>构造器</h3><p><code>public StringBuffer()</code></p>
+<p>默认构造器， 在默认情况下， 会构建一个以<code>DEFAULT_CAPACITY</code>为大小的StringBuffer，在JDK1.2中， 这个值为16.</p>
 <p><code>public StringBuffer(int capacity)</code></p>
-<p>�������������½�һ����СΪ<code>capacity</code>��<code>char</code>���飬 ���ҽ�����Ϊ��Ա����<code>value</code>�ĵ�ǰֵ��</p>
+<p>这个构造器会新建一个大小为<code>capacity</code>的<code>char</code>数组， 并且将其作为成员变量<code>value</code>的当前值。</p>
 <p><code>public StringBuffer(String str)</code></p>
-<p>��������������һ��String������������ֵ����<code>count</code>��<code>value</code>����Ҫע�����ǣ�ͨ���˹������õ����ַ���Buffer�Ĵ�С��ԭ�ַ����Ĵ�С����<code>DEFAULT_CAPACITY</code>�������ַ����Ĵ�С(<code>length</code>)��Ȼ��ԭ�ַ���</p>
-<h2 id="StringBuilder��"><a href="#StringBuilder��" class="headerlink" title="StringBuilder��"></a>StringBuilder��</h2><p>StringBuilder����ʾһ�� <em>�ɱ���(changeable)</em> �ַ����� ��StringBuffer���ƣ� ��Ҳ�ṩ������<code>insert</code>,<code>replace</code>,<code>delete</code>, <code>append</code>, <code>reverse</code>֮���ķ����� ������StringBuilder��ͬ���ǣ�StringBuilder�ǲ�ͬ���ģ� ֻ����һ���̵߳�������ʹ�á�</p>
-<h3 id="�ؼ���Ա����"><a href="#�ؼ���Ա����" class="headerlink" title="�ؼ���Ա����"></a>�ؼ���Ա����</h3><p><code>int count</code></p>
-<p>��һ������bufferλ�õ������� ͬʱҲ�ǵ�ǰ�ַ������ݵĴ�С��</p>
+<p>这个构造器接受一个String参数，并将其值赋予<code>count</code>与<code>value</code>，需要注意的是，通过此构造器得到的字符串Buffer的大小是原字符串的大小加上<code>DEFAULT_CAPACITY</code>。但是字符串的大小(<code>length</code>)依然是原字符串</p>
+<h2 id="StringBuilder类"><a href="#StringBuilder类" class="headerlink" title="StringBuilder类"></a>StringBuilder类</h2><p>StringBuilder类表示一个 <em>可变的(changeable)</em> 字符串， 与StringBuffer类似， 它也提供了诸如<code>insert</code>,<code>replace</code>,<code>delete</code>, <code>append</code>, <code>reverse</code>之类的方法。 但是与StringBuilder不同的是，StringBuilder是不同步的， 只能在一个线程的情况下使用。</p>
+<h3 id="关键成员函数"><a href="#关键成员函数" class="headerlink" title="关键成员函数"></a>关键成员函数</h3><p><code>int count</code></p>
+<p>下一个可用buffer位置的索引， 同时也是当前字符串内容的大小。</p>
 <p><code>char[] value</code></p>
-<p>�洢StringBuilder�е��ַ���Buffer������</p>
-<h3 id="������-2"><a href="#������-2" class="headerlink" title="������"></a>������</h3><p><code>public StringBuilder()</code></p>
-<p>Ĭ�Ϲ������� ��������һ����<code>DEFAULT_CAPACITY</code>Ϊ��С��StringBuilder</p>
+<p>存储StringBuilder中的字符串Buffer本身。</p>
+<h3 id="构造器-2"><a href="#构造器-2" class="headerlink" title="构造器"></a>构造器</h3><p><code>public StringBuilder()</code></p>
+<p>默认构造器， 创建构建一个以<code>DEFAULT_CAPACITY</code>为大小的StringBuilder</p>
 <p><code>public StringBuilder(int capacity)</code></p>
-<p>�������������½�һ����СΪ<code>capacity</code>��char���飬 ���ҽ�����Ϊ����<code>value</code>�ĵ�ǰֵ��</p>
+<p>这个构造器会新建一个大小为<code>capacity</code>的char数组， 并且将其作为变量<code>value</code>的当前值。</p>
 <p><code>public StringBuilder(String str)</code></p>
-<p>���������������ݴ�����String������������ֵ����<code>count</code>��<code>value</code>�� StringBuilderͨ���˹������õ���ʵ��������StringBufferһ���� value�����Ĵ�С������һ��<code>DEFAULT_CAPACITY</code>��</p>
+<p>这个构造器会根据传入的String参数，并将其值赋予<code>count</code>与<code>value</code>。 StringBuilder通过此构造器得到的实例对象与StringBuffer一样， value数组的大小会空余一个<code>DEFAULT_CAPACITY</code>。</p>
 <p><code>public StringBuilder(CharSequence seq)</code></p>
-<p>���ݴ�����CharSequence������ �½�һ��StringBuilderʵ���� ��Сͬ������һ��<code>DEFAULT_CAPACITY</code>�Ŀ��ࡣ</p>
-<h2 id="�L���ͬ"><a href="#�L���ͬ" class="headerlink" title="�Ƚ���ͬ"></a>�Ƚ���ͬ</h2><h3 id="String�루StringBuffer��StringBuilder�����бL�"><a href="#String�루StringBuffer��StringBuilder�����бL�" class="headerlink" title="String�루StringBuffer��StringBuilder�����бȽ�"></a>String�루StringBuffer��StringBuilder�����бȽ�</h3><p>��ͬ�㣺</p>
+<p>根据传入的CharSequence参数， 新建一个StringBuilder实例。 大小同样是有一个<code>DEFAULT_CAPACITY</code>的空余。</p>
+<h2 id="比较异同"><a href="#比较异同" class="headerlink" title="比较异同"></a>比较异同</h2><h3 id="String与（StringBuffer及StringBuilder）进行比较"><a href="#String与（StringBuffer及StringBuilder）进行比较" class="headerlink" title="String与（StringBuffer及StringBuilder）进行比较"></a>String与（StringBuffer及StringBuilder）进行比较</h3><p>相同点：</p>
 <ol>
-<li>����ʾ��һ���ַ�������</li>
-<li>����final�࣬ �����������̳�</li>
-<li>�����ַ������ж���֧��Unicode��</li>
-<li>��֧�ֶ����ַ����������ݵĲ��ֶ�ȡ</li>
-<li>�������˼Ӻ��������� �ܹ�ֱ��ʹ��”+”�����������ַ���</li>
+<li>都表示了一个字符串序列</li>
+<li>都是final类， 都不允许被继承</li>
+<li>这个字符串序列都是支持Unicode的</li>
+<li>都支持对于字符串序列内容的部分读取</li>
+<li>都重载了加号运算符， 能够直接使用”+”来连接两个字符串</li>
 </ol>
-<p>��ͬ�㣺</p>
+<p>不同点：</p>
 <ol>
-<li>String���͵��ַ����� <em>���ɱ䣨immutable��</em> �ģ� ��һ��Stringʵ���ڱ�����֮���� ���ַ����Ĵ�С�� ���ݲ����ٱ��ı䡣 ������Ҫ���иı��Ļ��� ʵ�������½���һ��Stringʵ����</li>
-<li>������StringBuffer��StringBuilder���ԣ� �䱾����ʵ����һ���䳤����(VLA)���������ַ�����С�����ݶ��ǿ��Խ��б仯�ġ��ڽ����޸ĵ�ʱ���� StringBuffer��StringBuilder����ʵ����һ��<code>public void ensureCapacity(int minimumCapacity)</code>�ķ����� ��ȷ��ʱ��Buffer�����Ĵ�СҪ����<code>minimumCapacity</code>, �����ͽ�������������ԭ��size�������ټӶ���</li>
-<li>String���Ͷ����ַ��������Ĳ������࣬����<code>toLowerCase</code>, <code>toUpperCase</code>������Сдת���ķ����� �Լ�<code>matches</code>, <code>split</code>,<code>replace</code>������������ʽ������ �Լ�<code>trim</code>��<code>concat</code>���������ַ����ķ�����������String����ʵ�֣�����StringBuffer��StringBuilder���в�û���ṩ���Ͻӿڡ�</li>
+<li>String类型的字符串是 <em>不可变（immutable）</em> 的， 即一个String实例在被创建之后， 其字符串的大小， 内容不能再被改变。 如果需要进行改变的话， 实际上是新建了一个String实例。</li>
+<li>而对于StringBuffer和StringBuilder而言， 其本质上实现了一个变长数组(VLA)，所以其字符串大小，内容都是可以进行变化的。在进行修改的时候， StringBuffer和StringBuilder各自实现了一个<code>public void ensureCapacity(int minimumCapacity)</code>的方法， 以确保时刻Buffer数组的大小要大于<code>minimumCapacity</code>, 否则就将数组扩充成其原来size的两倍再加二。</li>
+<li>String类型对于字符串本身的操作更多，诸如<code>toLowerCase</code>, <code>toUpperCase</code>这类大小写转换的方法， 以及<code>matches</code>, <code>split</code>,<code>replace</code>这类正则表达式方法， 以及<code>trim</code>，<code>concat</code>这类操作字符串的方法，都仅在String类中实现，而在StringBuffer与StringBuilder类中并没有提供以上接口。</li>
 </ol>
-<h3 id="StringBuffer-��-StringBuilder���бL�"><a href="#StringBuffer-��-StringBuilder���бL�" class="headerlink" title="StringBuffer �� StringBuilder���бȽ�"></a>StringBuffer �� StringBuilder���бȽ�</h3><p>��ͬ�㣺</p>
+<h3 id="StringBuffer-与-StringBuilder进行比较"><a href="#StringBuffer-与-StringBuilder进行比较" class="headerlink" title="StringBuffer 与 StringBuilder进行比较"></a>StringBuffer 与 StringBuilder进行比较</h3><p>相同点：</p>
 <ol>
-<li>ǰ����String���͹��е���ͬ�㲻׸��</li>
-<li>StringBuffer����StringBuilder�඼ʵ����һ�� <em>�ɱ���(changeable)</em> �ַ��������� ����ͨ��һϵ�з������ַ������ݽ����������ӣ�ɾ�������룬�滻����ת�Ȳ�����</li>
-<li>ʵ�ֵ��ַ���buffer�ı��ʶ���һ���䳤����(VLA)�� ���κ�ʱ�̶�������֤���鲻Խ�磬 �����ӽ������߽磬 �ͽ������Ĵ�С������ԭ����С�������Ӷ���</li>
-<li>Ĭ�ϵ�buffer��С<code>DEFAULT_CAPACITY</code>��Ϊ16</li>
+<li>前面与String类型共有的相同点不赘述</li>
+<li>StringBuffer类与StringBuilder类都实现了一个 <em>可变的(changeable)</em> 字符串对象， 可以通过一系列方法对字符串内容进行诸如增加，删减，插入，替换，翻转等操作。</li>
+<li>实现的字符串buffer的本质都是一个变长数组(VLA)， 在任何时刻都尽量保证数组不越界， 如果接近了其边界， 就将数组的大小扩充成原来大小的两倍加二。</li>
+<li>默认的buffer大小<code>DEFAULT_CAPACITY</code>都为16</li>
 </ol>
-<p>��ͬ�㣺</p>
+<p>不同点：</p>
 <ol>
-<li>StringBuilder������StringBuffer, ����һ������CharSequence�����Ĺ�������</li>
-<li>StringBuffer��StringBuilder������һ��<code>shared</code>ָʾ���Ա���buffer�����Ƿ񱻶������������á��������������õĻ����ڽ��в�����ʱ����Ҫ������buffer�ٸ���һ�ݣ� �Ա�֤�䵥���õ����ʡ� ��һ����ʵ��Ϊ�˱�֤�������ݵ�ͬ�������еġ�</li>
-<li>����֮ǰ��˵�� StringBuffer��StringBuilder��������ͬ��������������ͬ���ԡ� StringBuffer������������Ա����ǰ��������<code>synchronized</code>�ؼ��֣� �Ա�֤���̰߳�ȫ�� Ҳ����˵�� ��ͬһʱ�䣬 ֻ��һ���߳��ܹ���ͬһ��StringBuffer�������в������������Ʊ������߳�֮����д�ĳ�ͻ�� ������StringBuilder��˵�� ��û����һ�����ơ������п��ܻ������߳�֮���ĳ�ͻ�� ������һ���Ƕȶ��ԣ� Ҳ�����������߳���֮���Ŀ��ܵ�ϵͳ������ ������StringBuffer���ԣ� StringBuilder���ٶȿ��ܻ�����һЩ�� ��������ҪȨ��ʹ�á�</li>
+<li>StringBuilder类相较StringBuffer, 多了一个基于CharSequence建立的构造器。</li>
+<li>StringBuffer比StringBuilder类多了一个<code>shared</code>指示，以标记buffer内容是否被多个对象所引用。如果被多个引用的话，在进行操作的时候就要将这个buffer再复制一份， 以保证其单引用的性质。 这一点其实是为了保证操作内容的同步化进行的。</li>
+<li>正如之前所说， StringBuffer和StringBuilder的最大不同点在于其操作的同步性。 StringBuffer在其大多数成员方法前都加上了<code>synchronized</code>关键字， 以保证其线程安全。 也就是说， 在同一时间， 只有一个线程能够对同一个StringBuffer对象进行操作，这种限制避免了线程之间读写的冲突。 而对于StringBuilder来说， 就没有这一层限制。故其有可能会引起线程之间的冲突， 但从另一个角度而言， 也减少了诸如线程锁之类的可能的系统开销。 故相比StringBuffer而言， StringBuilder的速度可能会更快一些。 故两者需要权衡使用。</li>
 </ol>
 
       

@@ -35,23 +35,30 @@
   
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/">String, StringBuffer, StringBuilder比较</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-meta">
       <a href="/2016/09/23/Java中String, StringBuffer及StringBuilder之比较/" class="article-date">
-  <time datetime="2016-09-23T06:29:31.835Z" itemprop="datePublished">2016-09-23</time>
+  <time datetime="2016-09-23T06:49:40.000Z" itemprop="datePublished">2016-09-23</time>
 </a>
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="String-StringBuffer-StringBuilder�L�"><a href="#String-StringBuffer-StringBuilder�L�" class="headerlink" title="String, StringBuffer, StringBuilder�Ƚ�"></a>String, StringBuffer, StringBuilder�Ƚ�</h1><blockquote>
-<p>����: ����</p>
-<p>ѧ��: 3140105594</p>
-</blockquote>
-<h2 id="String-��"><a href="#String-��" class="headerlink" title="String ��"></a>String ��</h2><p>String ����ʾһ���ַ����� �������ϣ� �ַ������洢���ַ����ǲ��ɱ���(immutable)����Ҫ�޸�һ���ַ���������ֻ��ͨ���½�һ���µ��ַ���ʵ����ʵ�֡� �Ҷ���������ͬ���ַ������������ԣ� ����ָ������ͬһ���ַ���������</p>
-<p>����String�������������࣬ �������������ԣ�</p>
+        <h2 id="String-类"><a href="#String-类" class="headerlink" title="String 类"></a>String 类</h2><p>String 类表示一个字符串。 在设计上， 字符串类存储的字符串是不可变的(immutable)。想要修改一个字符串的内容只能通过新建一个新的字符串实例来实现。 且对于两个相同的字符串字面量而言， 他们指向的是同一个字符串对象。</p>
+<p>并且String类相对于其他类， 具有以下特殊性：</p>
 <ul>
-<li>String����Java��Ψһ�ľ����������������ࡣ String������+�������� ʹ�ö���һ���Ӻ��������ߵ�String�ܹ�������������</li>
+<li>String类是Java中唯一的具有重载运算符的类。 String重载了+运算符， 使得对于一个加号左右两边的String能够被连接起来。</li>
 </ul>
+<h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>String类具有以下的关键成员变量：</p>
 
         
           <p class="article-more-link">
